@@ -3,6 +3,8 @@
 ## Overview
 The File Manager is a core NeoCityOS application for navigating, organizing, and managing virtual files and folders in a cyberpunk-inspired interface.
 
+[▶️ Watch the demo video](../../files-vid.mp4)
+
 ## Features
 - Browse, create, rename, and delete files/folders
 - Drag-and-drop file organization

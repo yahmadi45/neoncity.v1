@@ -3,6 +3,8 @@
 ## Overview
 The Text Analyzer is a comprehensive utility app for NeoCityOS, designed to analyze, summarize, and transform text using advanced algorithms. It provides detailed statistics, frequency analysis, readability metrics, and transformation tools, all within a neon cyberpunk UI.
 
+[▶️ Watch the demo video](../../text-Analyze-vid.mp4)
+
 ---
 
 ## Features

@@ -3,6 +3,8 @@
 ## Overview
 The Memory Game is a classic card-matching game for NeoCityOS, reimagined with a neon cyberpunk interface. Test your memory and pattern recognition skills across multiple difficulty levels, with animated cards, sound effects, and score tracking.
 
+[▶️ Watch the demo video](../../memory-game-vid.mp4)
+
 ---
 
 ## Features

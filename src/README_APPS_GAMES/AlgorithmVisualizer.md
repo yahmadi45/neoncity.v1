@@ -3,6 +3,8 @@
 ## Overview
 The Algorithm Visualizer is an advanced educational tool for NeoCityOS, enabling users to explore, understand, and interact with classic algorithms through animated, step-by-step visualizations. It covers sorting, searching, and graph algorithms, providing both code and conceptual explanations in a neon cyberpunk UI.
 
+[▶️ Watch the demo video](../../algorithvisualize-vid.mp4)
+
 ---
 
 ## Features

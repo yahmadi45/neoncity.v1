@@ -3,6 +3,8 @@
 ## Overview
 The Advanced Dice Game is a feature-rich dice simulator for NeoCityOS, expanding on the classic dice game with multiple dice types, custom rules, advanced scoring, and achievement tracking. It’s designed for strategy and probability enthusiasts, all within a neon cyberpunk UI.
 
+[▶️ Watch the demo video](../../advanced-dice-vid.mp4)
+
 ---
 
 ## Features

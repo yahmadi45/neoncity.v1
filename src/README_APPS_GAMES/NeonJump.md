@@ -3,6 +3,8 @@
 ## Overview
 Neon Jump is a fast-paced cyberpunk platformer for NeoCityOS, featuring advanced physics, procedurally generated levels, power-ups, and a vibrant neon aesthetic. Players jump, dodge, and collect power-ups to reach new heights, with smooth controls and dynamic challenges.
 
+[▶️ Watch the demo video](../../neon-jump-vid.mp4)
+
 ---
 
 ## Features

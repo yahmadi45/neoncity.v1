@@ -3,6 +3,8 @@
 ## Overview
 Number Guesser is a fast-paced guessing game for NeoCityOS where players try to guess a randomly chosen number in as few attempts as possible. It features a neon cyberpunk interface, real-time feedback, and score tracking.
 
+[▶️ Watch the demo video](../../number-guesser-vid.mp4)
+
 ---
 
 ## Features

@@ -3,6 +3,8 @@
 ## Overview
 The Dice Game is a fast-paced, neon-themed game for NeoCityOS where users roll dice and compete for high scores. It features animated dice, sound effects, score tracking, and a responsive cyberpunk interface. The game is ideal for quick fun, probability exploration, or casual competition.
 
+[▶️ Watch the demo video](../../dice-game-vid.mp4)
+
 ---
 
 ## Features

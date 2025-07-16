@@ -3,6 +3,8 @@
 ## Overview
 The Store (NeoStore) is a cyberpunk-themed virtual marketplace for NeoCityOS, where users can browse, filter, and purchase high-tech items using in-game gold. It features a persistent cart, inventory, rarity-based item system, and a highly interactive neon UI.
 
+[▶️ Watch the demo video](../../store-vid.mp4)
+
 ---
 
 ## Features

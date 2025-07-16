@@ -3,6 +3,8 @@
 ## Overview
 The Data Structures Playground is an advanced interactive environment for NeoCityOS, designed for learning and experimenting with classic data structures in a visual, hands-on way. It supports stacks, queues, linked lists, binary trees, and hash tables, each with animated operations, performance metrics, and educational content in a neon cyberpunk UI.
 
+[▶️ Watch the demo video](../../data-struct-vid.mp4)
+
 ---
 
 ## Features

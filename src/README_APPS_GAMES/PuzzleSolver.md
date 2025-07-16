@@ -3,6 +3,8 @@
 ## Overview
 Puzzle Solver is a challenging logic and pattern game for NeoCityOS, offering a variety of puzzles (Sudoku, 8-puzzle, crossword, sliding puzzle) with multiple difficulty levels. It features step-by-step hints, animated feedback, and a neon cyberpunk interface.
 
+[▶️ Watch the demo video](../../puzzle-solver-vid.mp4)
+
 ---
 
 ## Features
