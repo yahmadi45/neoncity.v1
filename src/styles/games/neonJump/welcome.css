@@ -1,0 +1,688 @@
+/* Enhanced Modern NeonJump Welcome Screen */
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+/* CSS Variables */
+:root {
+    --neon-green: #00ff41;
+    --neon-blue: #00f7ff;
+    --neon-purple: #9d00ff;
+    --neon-red: #ff0000;
+    --neon-pink: #ff0080;
+    --neon-yellow: #ffff00;
+    --dark-bg: #000000;
+    --glass-bg: rgba(0, 255, 65, 0.08);
+    --glass-border: rgba(0, 255, 65, 0.25);
+    --text-shadow: 0 0 10px currentColor;
+    --box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --glow: 0 0 20px currentColor;
+}
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Orbitron', monospace;
+    background: var(--dark-bg);
+    color: var(--neon-green);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* Main Container */
+.welcome-container {
+    width: 100%;
+    height: 100vh;
+    min-height: 400px;
+    max-height: 100vh;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(0, 255, 65, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(0, 247, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(157, 0, 255, 0.05) 0%, transparent 70%),
+        linear-gradient(135deg, #000000 0%, #0a0a0a 30%, #000000 70%, #000000 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Enhanced Background Animation */
+.welcome-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(0, 255, 65, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(0, 247, 255, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(157, 0, 255, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+    animation: subtleGlow 20s ease-in-out infinite;
+}
+
+@keyframes subtleGlow {
+    0%, 100% { 
+        opacity: 0.4;
+        transform: scale(1) rotate(0deg);
+    }
+    25% { 
+        opacity: 0.8;
+        transform: scale(1.02) rotate(1deg);
+    }
+    50% { 
+        opacity: 0.6;
+        transform: scale(1.05) rotate(0deg);
+    }
+    75% { 
+        opacity: 0.9;
+        transform: scale(1.03) rotate(-1deg);
+    }
+}
+
+/* Animated Grid Background */
+.welcome-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        linear-gradient(rgba(0, 255, 65, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 65, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: gridMove 30s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes gridMove {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(50px, 50px); }
+}
+
+/* Back Button */
+.back-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(0, 255, 65, 0.1);
+    border: 2px solid var(--neon-green);
+    color: var(--neon-green);
+    padding: 12px 24px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-family: 'Orbitron', monospace;
+    font-weight: 600;
+    font-size: 12px;
+    transition: var(--bounce);
+    z-index: 1000;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 4px 15px rgba(0, 255, 65, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.back-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.2), transparent);
+    transition: left 0.6s;
+}
+
+.back-btn:hover {
+    background: var(--neon-green);
+    color: var(--dark-bg);
+    box-shadow: 0 0 30px rgba(0, 255, 65, 0.6);
+    transform: translateY(-3px) scale(1.05);
+}
+
+.back-btn:hover::before {
+    left: 100%;
+}
+
+/* Main Content */
+.welcome-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 600px;
+    width: 90%;
+    z-index: 10;
+    gap: 40px;
+    animation: fadeInUp 1.2s ease-out;
+    padding: 20px;
+    position: relative;
+}
+
+.welcome-content::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    background: rgba(0, 255, 65, 0.02);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    z-index: -1;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Title Section */
+.title-section {
+    text-align: center;
+    animation: titleSlideIn 1.5s ease-out 0.3s both;
+    position: relative;
+}
+
+@keyframes titleSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-40px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.game-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin-bottom: 15px;
+    background: linear-gradient(45deg, var(--neon-green), var(--neon-blue), var(--neon-purple), var(--neon-green));
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    filter: drop-shadow(0 0 25px rgba(0, 255, 65, 0.7));
+    animation: gradientShift 4s ease-in-out infinite, titleGlow 2s ease-in-out infinite alternate;
+    position: relative;
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+@keyframes titleGlow {
+    0% { filter: drop-shadow(0 0 20px rgba(0, 255, 65, 0.5)); }
+    100% { filter: drop-shadow(0 0 35px rgba(0, 255, 65, 0.8)); }
+}
+
+.game-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--neon-green), var(--neon-blue), transparent);
+    animation: titleLine 3s ease-in-out infinite;
+}
+
+@keyframes titleLine {
+    0%, 100% { opacity: 0.5; transform: translateX(-50%) scaleX(0.8); }
+    50% { opacity: 1; transform: translateX(-50%) scaleX(1); }
+}
+
+.game-subtitle {
+    font-size: 1.1rem;
+    color: var(--neon-blue);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    opacity: 0.9;
+    animation: subtitlePulse 3s ease-in-out infinite;
+    text-shadow: 0 0 10px rgba(0, 247, 255, 0.5);
+}
+
+@keyframes subtitlePulse {
+    0%, 100% { opacity: 0.7; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+}
+
+/* Difficulty Section */
+.difficulty-section {
+    width: 100%;
+    text-align: center;
+    animation: sectionSlideIn 1s ease-out 0.6s both;
+    position: relative;
+}
+
+.difficulty-section::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    right: -15px;
+    bottom: -15px;
+    background: rgba(157, 0, 255, 0.03);
+    border-radius: 15px;
+    backdrop-filter: blur(5px);
+    z-index: -1;
+}
+
+.difficulty-title {
+    font-size: 1.4rem;
+    color: var(--neon-purple);
+    margin-bottom: 25px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    text-shadow: 0 0 15px rgba(157, 0, 255, 0.5);
+}
+
+.difficulty-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--neon-purple), var(--neon-blue), transparent);
+    border-radius: 2px;
+    animation: titleUnderline 2s ease-in-out infinite;
+}
+
+@keyframes titleUnderline {
+    0%, 100% { opacity: 0.6; transform: translateX(-50%) scaleX(0.8); }
+    50% { opacity: 1; transform: translateX(-50%) scaleX(1.2); }
+}
+
+.difficulty-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.difficulty-btn {
+    position: relative;
+    background: rgba(157, 0, 255, 0.1);
+    border: 2px solid var(--neon-purple);
+    color: var(--neon-purple);
+    padding: 15px 35px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-family: 'Orbitron', monospace;
+    font-weight: 700;
+    font-size: 16px;
+    transition: var(--bounce);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    overflow: hidden;
+    min-width: 120px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 4px 20px rgba(157, 0, 255, 0.2);
+}
+
+.difficulty-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(157, 0, 255, 0.3), transparent);
+    transition: left 0.6s;
+}
+
+.difficulty-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.difficulty-btn:hover {
+    background: var(--neon-purple);
+    color: var(--dark-bg);
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 12px 35px rgba(157, 0, 255, 0.5);
+}
+
+.difficulty-btn:hover::before {
+    left: 100%;
+}
+
+.difficulty-btn:hover::after {
+    opacity: 1;
+}
+
+.difficulty-btn.easy {
+    border-color: var(--neon-green);
+    color: var(--neon-green);
+    background: rgba(0, 255, 65, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 255, 65, 0.2);
+}
+
+.difficulty-btn.easy:hover {
+    background: var(--neon-green);
+    color: var(--dark-bg);
+    box-shadow: 0 12px 35px rgba(0, 255, 65, 0.5);
+}
+
+.difficulty-btn.medium {
+    border-color: var(--neon-blue);
+    color: var(--neon-blue);
+    background: rgba(0, 247, 255, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 247, 255, 0.2);
+}
+
+.difficulty-btn.medium:hover {
+    background: var(--neon-blue);
+    color: var(--dark-bg);
+    box-shadow: 0 12px 35px rgba(0, 247, 255, 0.5);
+}
+
+.difficulty-btn.hard {
+    border-color: var(--neon-red);
+    color: var(--neon-red);
+    background: rgba(255, 0, 0, 0.1);
+    box-shadow: 0 4px 20px rgba(255, 0, 0, 0.2);
+}
+
+.difficulty-btn.hard:hover {
+    background: var(--neon-red);
+    color: var(--dark-bg);
+    box-shadow: 0 12px 35px rgba(255, 0, 0, 0.5);
+}
+
+.btn-text {
+    position: relative;
+    z-index: 1;
+}
+
+.btn-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+
+.difficulty-btn:hover .btn-glow {
+    opacity: 1;
+}
+
+/* Controls Section */
+.controls-section {
+    background: var(--glass-bg);
+    border: 2px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 35px;
+    backdrop-filter: blur(20px);
+    width: 100%;
+    animation: sectionSlideIn 1s ease-out 0.8s both;
+    box-shadow: 0 8px 32px rgba(0, 255, 65, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+.controls-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.05), transparent);
+    animation: controlsGlow 4s ease-in-out infinite;
+}
+
+@keyframes controlsGlow {
+    0%, 100% { left: -100%; }
+    50% { left: 100%; }
+}
+
+@keyframes sectionSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.controls-title {
+    font-size: 1.4rem;
+    color: var(--neon-green);
+    margin-bottom: 25px;
+    text-align: center;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    text-shadow: 0 0 15px rgba(0, 255, 65, 0.5);
+}
+
+.controls-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--neon-green), var(--neon-blue), transparent);
+    border-radius: 2px;
+    animation: titleUnderline 2s ease-in-out infinite;
+}
+
+.controls-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.control-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 22px;
+    background: rgba(0, 255, 65, 0.08);
+    border: 1px solid rgba(0, 255, 65, 0.2);
+    border-radius: 15px;
+    transition: var(--bounce);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.control-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.15), transparent);
+    transition: left 0.6s;
+}
+
+.control-item:hover {
+    background: rgba(0, 255, 65, 0.15);
+    border-color: rgba(0, 255, 65, 0.5);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(0, 255, 65, 0.3);
+}
+
+.control-item:hover::before {
+    left: 100%;
+}
+
+.control-key {
+    background: var(--dark-bg);
+    border: 2px solid var(--neon-green);
+    color: var(--neon-green);
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    font-size: 14px;
+    min-width: 55px;
+    text-align: center;
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.4);
+    text-shadow: 0 0 5px var(--neon-green);
+}
+
+.control-action {
+    color: var(--neon-green);
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 0 8px rgba(0, 255, 65, 0.5);
+}
+
+/* App Window Specific Styles */
+#neon-jump .welcome-container {
+    min-height: 400px;
+    max-height: 600px;
+    overflow-y: auto;
+    border-radius: 12px;
+    border: 2px solid rgba(0, 255, 65, 0.2);
+    box-shadow: 0 0 30px rgba(0, 255, 65, 0.1);
+}
+
+#neon-jump .welcome-content {
+    padding: 15px;
+    gap: 30px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .game-title {
+        font-size: 2.8rem;
+        letter-spacing: 6px;
+    }
+    
+    .game-subtitle {
+        font-size: 1rem;
+        letter-spacing: 3px;
+    }
+    
+    .controls-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .difficulty-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .welcome-content {
+        gap: 30px;
+        padding: 0 15px;
+    }
+    
+    .controls-section {
+        padding: 25px;
+    }
+    
+    .difficulty-btn {
+        padding: 12px 30px;
+        font-size: 14px;
+        min-width: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    .game-title {
+        font-size: 2.2rem;
+        letter-spacing: 4px;
+    }
+    
+    .game-subtitle {
+        font-size: 0.9rem;
+        letter-spacing: 2px;
+    }
+    
+    .controls-section {
+        padding: 20px;
+    }
+    
+    .difficulty-btn {
+        padding: 10px 25px;
+        font-size: 12px;
+        min-width: 80px;
+    }
+    
+    .back-btn {
+        top: 15px;
+        left: 15px;
+        padding: 8px 16px;
+        font-size: 10px;
+    }
+    
+    .welcome-content {
+        gap: 25px;
+    }
+}
+
+/* Custom Scrollbar */
+.welcome-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.welcome-container::-webkit-scrollbar-track {
+    background: rgba(0, 255, 65, 0.05);
+    border-radius: 4px;
+}
+
+.welcome-container::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--neon-green), var(--neon-blue));
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+}
+
+.welcome-container::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, var(--neon-blue), var(--neon-purple));
+    box-shadow: 0 0 15px rgba(0, 247, 255, 0.5);
+} 

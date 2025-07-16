@@ -1,0 +1,248 @@
+/**
+ * NeonJump Button Styles
+ * Styling for all buttons and interactive elements
+ */
+
+/* ===== BASE BUTTON STYLES ===== */
+.neon-btn {
+    position: relative;
+    padding: var(--spacing-md) var(--spacing-xl);
+    background: var(--glass-bg);
+    border: 2px solid var(--glass-border);
+    border-radius: var(--radius-md);
+    color: var(--neon-green);
+    font-family: var(--font-primary);
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: var(--transition-normal);
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    box-shadow: var(--glass-shadow);
+    min-width: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-xs);
+    text-decoration: none;
+}
+
+.neon-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: var(--transition-normal);
+}
+
+.neon-btn:hover::before {
+    left: 100%;
+}
+
+.neon-btn:hover {
+    background: rgba(0, 255, 65, 0.2);
+    box-shadow: var(--glow-effect);
+    transform: scale(1.05);
+    border-color: var(--neon-green);
+}
+
+.neon-btn:active {
+    transform: scale(0.95);
+}
+
+/* ===== BUTTON TEXT ===== */
+.btn-text {
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-shadow: var(--text-shadow);
+    position: relative;
+    z-index: 1;
+}
+
+.btn-subtitle {
+    font-size: 0.8rem;
+    opacity: 0.8;
+    font-weight: 400;
+    position: relative;
+    z-index: 1;
+}
+
+/* ===== DIFFICULTY BUTTONS ===== */
+.btn-easy {
+    border-color: var(--neon-green);
+    color: var(--neon-green);
+}
+
+.btn-easy:hover {
+    background: rgba(0, 255, 65, 0.2);
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
+}
+
+.btn-medium {
+    border-color: var(--neon-orange);
+    color: var(--neon-orange);
+}
+
+.btn-medium:hover {
+    background: rgba(255, 102, 0, 0.2);
+    box-shadow: 0 0 20px rgba(255, 102, 0, 0.5);
+}
+
+.btn-hard {
+    border-color: var(--neon-red);
+    color: var(--neon-red);
+}
+
+.btn-hard:hover {
+    background: rgba(255, 0, 64, 0.2);
+    box-shadow: 0 0 20px rgba(255, 0, 64, 0.5);
+}
+
+/* ===== ACTION BUTTONS ===== */
+.btn-primary {
+    border-color: var(--neon-blue);
+    color: var(--neon-blue);
+    font-size: 1.3rem;
+    padding: var(--spacing-lg) var(--spacing-xxl);
+}
+
+.btn-primary:hover {
+    background: rgba(0, 247, 255, 0.2);
+    box-shadow: 0 0 30px rgba(0, 247, 255, 0.6);
+}
+
+.btn-secondary {
+    border-color: var(--neon-purple);
+    color: var(--neon-purple);
+    font-size: 1rem;
+    padding: var(--spacing-sm) var(--spacing-lg);
+}
+
+.btn-secondary:hover {
+    background: rgba(157, 0, 255, 0.2);
+    box-shadow: 0 0 20px rgba(157, 0, 255, 0.5);
+}
+
+.btn-danger {
+    border-color: var(--neon-red);
+    color: var(--neon-red);
+}
+
+.btn-danger:hover {
+    background: rgba(255, 0, 64, 0.2);
+    box-shadow: 0 0 20px rgba(255, 0, 64, 0.5);
+}
+
+.btn-success {
+    border-color: var(--neon-green);
+    color: var(--neon-green);
+}
+
+.btn-success:hover {
+    background: rgba(0, 255, 65, 0.2);
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
+}
+
+/* ===== BUTTON SIZES ===== */
+.btn-small {
+    font-size: 0.9rem;
+    padding: var(--spacing-xs) var(--spacing-md);
+    min-width: 80px;
+}
+
+.btn-large {
+    font-size: 1.4rem;
+    padding: var(--spacing-xl) var(--spacing-xxl);
+    min-width: 160px;
+}
+
+/* ===== BUTTON STATES ===== */
+.neon-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.neon-btn:focus {
+    outline: none;
+    box-shadow: 
+        0 0 0 3px rgba(0, 255, 65, 0.3),
+        var(--glow-effect);
+}
+
+/* ===== BUTTON GROUPS ===== */
+.btn-group {
+    display: flex;
+    gap: var(--spacing-md);
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-group-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    align-items: center;
+}
+
+/* ===== RESPONSIVE BUTTONS ===== */
+@media (max-width: 768px) {
+    .neon-btn {
+        font-size: 1rem;
+        padding: var(--spacing-sm) var(--spacing-lg);
+        min-width: 100px;
+    }
+    
+    .btn-text {
+        font-size: 1.1rem;
+    }
+    
+    .btn-subtitle {
+        font-size: 0.7rem;
+    }
+    
+    .difficulty-buttons {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+}
+
+@media (max-width: 480px) {
+    .neon-btn {
+        font-size: 0.9rem;
+        padding: var(--spacing-xs) var(--spacing-md);
+        min-width: 80px;
+    }
+    
+    .btn-text {
+        font-size: 1rem;
+    }
+    
+    .btn-subtitle {
+        font-size: 0.6rem;
+    }
+}
+
+/* ===== ACCESSIBILITY ===== */
+@media (prefers-reduced-motion: reduce) {
+    .neon-btn {
+        transition: none;
+    }
+    
+    .neon-btn:hover {
+        transform: none;
+    }
+}
+
+@media (prefers-contrast: high) {
+    .neon-btn {
+        border-width: 3px;
+        background: var(--black);
+    }
+} 

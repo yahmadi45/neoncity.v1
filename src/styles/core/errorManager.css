@@ -1,0 +1,349 @@
+/**
+ * NeoCityOS Error Management Styles
+ * 
+ * Cyberpunk-themed error handling and notification styles for the NeoCityOS
+ * web operating system. Provides professional error boundaries, notifications,
+ * and user feedback mechanisms.
+ * 
+ * @author NeoCityOS Development Team
+ * @license MIT
+ */
+
+/* Error Boundary Container */
+.error-boundary {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(10px);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.error-boundary:not([hidden]) {
+    opacity: 1;
+    visibility: visible;
+}
+
+.error-boundary.error-active {
+    animation: errorPulse 2s ease-in-out infinite;
+}
+
+/* Error Content */
+.error-content {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    border: 2px solid #00f7ff;
+    border-radius: 15px;
+    padding: 40px;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 
+        0 0 30px rgba(0, 247, 255, 0.3),
+        inset 0 0 20px rgba(0, 247, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.error-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 247, 255, 0.2), transparent);
+    animation: errorScan 3s ease-in-out infinite;
+}
+
+/* Error Icon */
+.error-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    animation: errorGlow 2s ease-in-out infinite alternate;
+}
+
+/* Error Title */
+.error-content h2 {
+    color: #00f7ff;
+    font-size: 2rem;
+    margin: 0 0 20px 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(0, 247, 255, 0.5);
+    font-weight: 700;
+}
+
+/* Error Message */
+.error-content p {
+    color: #ffffff;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 0 0 30px 0;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+/* Error Actions */
+.error-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Error Buttons */
+.error-btn {
+    background: linear-gradient(135deg, #00f7ff 0%, #0099cc 100%);
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    color: #000;
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    min-width: 100px;
+}
+
+.error-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.error-btn:hover::before {
+    left: 100%;
+}
+
+.error-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 5px 15px rgba(0, 247, 255, 0.4),
+        0 0 20px rgba(0, 247, 255, 0.2);
+}
+
+.error-btn:active {
+    transform: translateY(0);
+}
+
+.error-btn.retry-btn {
+    background: linear-gradient(135deg, #00ff88 0%, #00cc66 100%);
+}
+
+.error-btn.close-btn {
+    background: linear-gradient(135deg, #ff4757 0%, #c44569 100%);
+}
+
+/* User Error Notifications */
+.user-error-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 
+        0 5px 15px rgba(255, 107, 107, 0.4),
+        0 0 20px rgba(255, 107, 107, 0.2);
+    z-index: 9999;
+    max-width: 300px;
+    animation: slideInRight 0.3s ease-out;
+    border-left: 4px solid #ff4757;
+}
+
+/* Login Error Styles */
+.login-error {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin: 15px 0;
+    text-align: center;
+    font-weight: 600;
+    box-shadow: 
+        0 5px 15px rgba(255, 107, 107, 0.4),
+        0 0 20px rgba(255, 107, 107, 0.2);
+    animation: errorShake 0.5s ease-in-out;
+    border-left: 4px solid #ff4757;
+    position: relative;
+    overflow: hidden;
+}
+
+.login-error::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    animation: errorScan 2s ease-in-out infinite;
+}
+
+/* Animations */
+@keyframes errorPulse {
+    0%, 100% {
+        box-shadow: 0 0 30px rgba(0, 247, 255, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 50px rgba(0, 247, 255, 0.6);
+    }
+}
+
+@keyframes errorGlow {
+    0% {
+        text-shadow: 0 0 10px rgba(255, 193, 7, 0.5);
+    }
+    100% {
+        text-shadow: 0 0 20px rgba(255, 193, 7, 0.8);
+    }
+}
+
+@keyframes errorScan {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+@keyframes errorShake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-5px);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(5px);
+    }
+}
+
+@keyframes slideInRight {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Loading Error State */
+.error-loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(0, 247, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #00f7ff;
+    animation: errorSpin 1s ease-in-out infinite;
+    margin-right: 10px;
+}
+
+@keyframes errorSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .error-content {
+        padding: 30px 20px;
+        margin: 20px;
+    }
+    
+    .error-content h2 {
+        font-size: 1.5rem;
+    }
+    
+    .error-content p {
+        font-size: 1rem;
+    }
+    
+    .error-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .error-btn {
+        width: 100%;
+        max-width: 200px;
+    }
+    
+    .user-error-notification {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        max-width: none;
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    .error-content {
+        border-width: 3px;
+        box-shadow: 0 0 20px rgba(0, 247, 255, 0.8);
+    }
+    
+    .error-btn {
+        border: 2px solid #000;
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    .error-boundary,
+    .error-content,
+    .error-btn,
+    .login-error,
+    .user-error-notification {
+        animation: none;
+        transition: none;
+    }
+    
+    .error-content::before,
+    .login-error::before {
+        animation: none;
+    }
+}
+
+/* Dark Mode Enhancements */
+@media (prefers-color-scheme: dark) {
+    .error-content {
+        background: linear-gradient(135deg, #000000 0%, #1a1a2e 50%, #16213e 100%);
+        border-color: #00f7ff;
+    }
+    
+    .user-error-notification {
+        background: linear-gradient(135deg, #c44569 0%, #ff6b6b 100%);
+    }
+}
+
+/* Print Styles */
+@media print {
+    .error-boundary,
+    .user-error-notification {
+        display: none !important;
+    }
+} 

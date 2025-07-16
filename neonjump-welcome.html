@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔥 Neon Jump - Welcome 🔥</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/styles/games/neonJump/welcome.css">
+</head>
+<body>
+    <div class="welcome-container">
+        <button class="back-btn" type="button" onclick="backToDesktop()">← Back to Desktop</button>
+        
+        <div class="welcome-content">
+            <div class="title-section">
+                <h1 class="game-title">Neon Jump</h1>
+                <p class="game-subtitle">Cyberpunk Platformer</p>
+            </div>
+            
+            <div class="difficulty-section">
+                <h3 class="difficulty-title">Select Difficulty</h3>
+                <div class="difficulty-buttons">
+                    <button class="difficulty-btn easy" onclick="startGame('easy', 1)">
+                        <span class="btn-text">Easy</span>
+                        <span class="btn-glow"></span>
+                    </button>
+                    <button class="difficulty-btn medium" onclick="startGame('medium', 1)">
+                        <span class="btn-text">Medium</span>
+                        <span class="btn-glow"></span>
+                    </button>
+                    <button class="difficulty-btn hard" onclick="startGame('hard', 1)">
+                        <span class="btn-text">Hard</span>
+                        <span class="btn-glow"></span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="controls-section">
+                <h3 class="controls-title">Controls</h3>
+                <div class="controls-grid">
+                    <div class="control-item">
+                        <span class="control-key">←</span>
+                        <span class="control-action">Move Left</span>
+                    </div>
+                    <div class="control-item">
+                        <span class="control-key">→</span>
+                        <span class="control-action">Move Right</span>
+                    </div>
+                    <div class="control-item">
+                        <span class="control-key">↑</span>
+                        <span class="control-action">Jump</span>
+                    </div>
+                    <div class="control-item">
+                        <span class="control-key">ESC</span>
+                        <span class="control-action">Pause</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="src/games/neonJump/welcome.js"></script>
+</body>
+</html> 

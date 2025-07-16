@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="NeoCityOS - A cyberpunk-themed web operating system featuring interactive algorithm visualizations and educational tools" />
+  <meta name="keywords" content="algorithm visualizer, cyberpunk, web OS, educational tools, sorting algorithms, searching algorithms" />
+  <meta name="author" content="NeoCityOS Development Team" />
+  <meta name="theme-color" content="#00f7ff" />
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="NeoCityOS - Cyberpunk Web Operating System" />
+  <meta property="og:description" content="Interactive algorithm visualizer and educational tools in a cyberpunk-themed web OS" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="" />
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="assets/icons/algorithmVisualizer.png" />
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Core Stylesheets -->
+  <link rel="stylesheet" href="src/styles/core/login.css" />
+  <link rel="stylesheet" href="src/styles/core/desktop.css" />
+  <link rel="stylesheet" href="src/styles/core/app.css" />
+  <link rel="stylesheet" href="src/styles/core/animations.css" />
+  <link rel="stylesheet" href="src/styles/core/errorManager.css" />
+  
+  <!-- Component Stylesheets -->
+  <link rel="stylesheet" href="src/styles/components/TerminalAnimation.css" />
+  <link rel="stylesheet" href="src/styles/components/terminaldesktop.css" />
+  
+  <!-- App Stylesheets -->
+  <link rel="stylesheet" href="src/styles/apps/fileManager.css" />
+  <link rel="stylesheet" href="src/styles/apps/store.css" />
+  <link rel="stylesheet" href="src/styles/apps/algorithms.css" />
+  <link rel="stylesheet" href="src/styles/apps/dataStructures.css" />
+  <link rel="stylesheet" href="src/styles/apps/textAnalyzer.css" />
+  <link rel="stylesheet" href="src/styles/apps/browser.css" />
+  
+  <!-- Game Stylesheets -->
+  <link rel="stylesheet" href="src/styles/games/puzzleSolver.css" />
+  <link rel="stylesheet" href="src/styles/games/numberGuesser.css" />
+  <link rel="stylesheet" href="src/styles/games/dice.css" />
+  <link rel="stylesheet" href="src/styles/games/advancedDice.css" />
+  <link rel="stylesheet" href="src/styles/games/memoryGame.css" />
+  
+  <style>
+    /* Hide login and terminal if ?show=desktop is present in the URL */
+    html[data-desktop] #login-section,
+    html[data-desktop] #terminal,
+    html[data-desktop] #loading-indicator,
+    html[data-desktop] #error-boundary {
+      display: none !important;
+    }
+    html[data-desktop] #desktop-section {
+      display: block !important;
+    }
+  </style>
+  
+  <title>NeoCityOS - Cyberpunk Web Operating System</title>
+</head>
+<body>
+  <!-- 🔐 Login Section -->
+  <section id="login-section" class="login-section" role="main" aria-label="Login Interface">
+    <form id="login-form" class="glitch-mode" role="form" aria-label="User Authentication">
+        <h1 data-text="NEO ACCESS">NEO ACCESS</h1>
+        <div class="input-group">
+          <label for="username" class="sr-only">Username</label>
+          <input type="text" id="username" name="username" placeholder="USER ID" required aria-required="true" autocomplete="username" />
+        </div>
+        <div class="input-group">
+          <label for="password" class="sr-only">Password</label>
+          <input type="password" id="password" name="password" placeholder="SECURE KEY" required aria-required="true" autocomplete="current-password" />
+        </div>
+        <button type="submit" aria-label="Connect to NeoCityOS">CONNECT</button>
+    </form>
+  </section>
+
+  <!-- 🖥️ Terminal Animation -->
+  <div id="terminal" class="terminal-container" role="status" aria-live="polite" aria-label="System Boot Terminal">
+    <pre id="terminal-output" aria-label="Terminal Output"></pre>
+    <div class="progress-bar" role="progressbar" aria-label="Boot Progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+  </div>
+
+  <!-- 🖥️ Desktop Section -->
+  <div id="desktop-section" class="desktop-section" role="main" aria-label="NeoCityOS Desktop">
+    <div id="desktop-icons" role="grid" aria-label="Application Icons"></div>
+    <!-- Cyberpunk visual effects -->
+    <div class="data-stream" aria-hidden="true"></div>
+    <div class="scan-effect" aria-hidden="true"></div>
+  </div>
+
+  <!-- Taskbar -->
+  <nav id="taskbar" class="taskbar" role="navigation" aria-label="System Taskbar">
+    <button class="taskbar-btn" id="start-menu-btn" aria-label="Open Start Menu" aria-expanded="false">
+      <img src="assets/icons/Start.png" alt="Start Menu Icon" />
+    </button>
+  </nav>
+
+  <!-- Loading Indicator -->
+  <div id="loading-indicator" class="loading-indicator" role="status" aria-live="polite" aria-label="Loading System" hidden>
+    <div class="loading-spinner"></div>
+    <span>Initializing NeoCityOS...</span>
+  </div>
+
+  <!-- Error Boundary -->
+  <div id="error-boundary" class="error-boundary" role="alert" aria-live="assertive" hidden>
+    <div class="error-content">
+      <h2>System Error</h2>
+      <p id="error-message">An unexpected error occurred.</p>
+      <button id="error-retry" aria-label="Retry System Initialization">RETRY</button>
+    </div>
+  </div>
+
+  <!-- Neon Prompt Modal for File/Folder Naming -->
+  
+  <!-- Core Scripts -->
+  <script src="src/core/errorManager.js"></script>
+  <script src="src/core/localStorage.js"></script>
+  <script src="src/core/appConfig.js"></script>
+  <script src="src/core/audioManager.js"></script>
+  <script src="src/core/animations.js"></script>
+  <script src="src/core/appManager.js"></script>
+  
+  <!-- Component Scripts -->
+  <script src="src/components/TerminalAnimation.js"></script>
+  <script src="src/components/terminaldesktop.js"></script>
+  
+  <!-- App Scripts -->
+  <script src="src/apps/fileManager.js"></script>
+  <script src="src/apps/store.js"></script>
+  <script src="src/apps/browser.js"></script>
+  <script src="src/apps/algorithmVisualizer.js"></script>
+  <script src="src/apps/dataStructures.js"></script>
+  <script src="src/apps/textAnalyzer.js"></script>
+  
+  <!-- Game Scripts -->
+  <script src="src/games/dice.js"></script>
+  <script src="src/games/advancedDice.js"></script>
+  <script src="src/games/memoryGame.js"></script>
+  <script src="src/games/numberGuesser.js"></script>
+  <script src="src/games/puzzleSolver.js"></script>
+  
+  <!-- Core Application Scripts -->
+  <script src="src/core/desktop.js"></script>
+  <script src="src/core/app.js"></script>
+  <script>
+    // NeonJump Desktop Auto-Show Fix
+    (function() {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('show') === 'desktop') {
+        // Set a data attribute on <html> for CSS to pick up
+        document.documentElement.setAttribute('data-desktop', 'true');
+        // Hide login and terminal (fallback for browsers that load JS after render)
+        var login = document.getElementById('login-section');
+        if (login) login.style.display = 'none';
+        var terminal = document.getElementById('terminal');
+        if (terminal) terminal.style.display = 'none';
+        var desktop = document.getElementById('desktop-section');
+        if (desktop) desktop.style.display = 'block';
+        var loading = document.getElementById('loading-indicator');
+        if (loading) loading.style.display = 'none';
+        var error = document.getElementById('error-boundary');
+        if (error) error.style.display = 'none';
+      }
+    })();
+  </script>
+  <script>
+    // Ensure Data Structures Playground global functions are always available
+    window.addToDataStructure = () => window.dataStructures && window.dataStructures.add();
+    window.removeFromDataStructure = () => window.dataStructures && window.dataStructures.remove();
+    window.clearDataStructure = () => window.dataStructures && window.dataStructures.clear();
+    window.searchDataStructure = () => window.dataStructures && window.dataStructures.search();
+  </script>
+</body>
+</html>
+
+
+
+
+
+

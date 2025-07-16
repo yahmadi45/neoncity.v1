@@ -1,0 +1,435 @@
+:root {
+    --primary-color: #00f7ff;
+    --secondary-color: #181c20;
+    --accent-color: #ffb400;
+    --text-color: #fff;
+    --header-bg: #000;
+    --footer-bg: #000;
+    --border-radius: 10px;
+    --shadow: 0 2px 16px #00f7ff33;
+    --transition: 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+    --focus-ring: 0 0 0 2px #00f7ff88;
+    --neon-glow: 0 0 8px #00f7ff, 0 0 16px #00f7ff44;
+    --fadein: fadein 0.5s cubic-bezier(0.4,0,0.2,1);
+    --font-main: 'Orbitron', 'Segoe UI', 'Arial', sans-serif;
+}
+
+body, .algovis-main {
+    background: #000 !important;
+}
+
+@keyframes fadein {
+    from { opacity: 0; transform: translateY(30px) scale(0.98); }
+    to { opacity: 1; transform: none; }
+}
+
+.algovis-header {
+    font-family: var(--font-main);
+    background: var(--header-bg);
+    color: #00f7ff;
+    padding: 0.7rem 1rem 0.5rem 1rem;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border-bottom: 1px solid #00f7ff44;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.algovis-header h1 {
+    margin: 0 0 0.2rem 0;
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #00f7ff;
+    text-shadow: 0 1px 4px #00f7ff44;
+}
+
+.algovis-header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 1.2rem;
+}
+
+.algovis-header nav a {
+    color: #00f7ff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    padding: 0.1rem 0.5rem;
+    border-radius: 5px;
+    transition: background var(--transition), color var(--transition);
+}
+
+.algovis-header nav a:hover,
+.algovis-header nav a:focus {
+    background: var(--accent-color);
+    color: #000;
+    outline: none;
+}
+
+.algovis-main {
+    animation: var(--fadein);
+    font-family: var(--font-main);
+    background: #000;
+    color: var(--text-color);
+    max-width: 600px;
+    margin: 1.5rem auto;
+    border-radius: var(--border-radius);
+    box-shadow: 0 0 32px 4px #00f7ff88, 0 8px 32px #000a, 0 1.5px 6px #a259ff33;
+    border: 1.5px solid #00f7ff;
+    background: #000;
+    position: relative;
+    z-index: 1;
+    /* Floating effect */
+    transition: box-shadow 0.25s cubic-bezier(0.4,0,0.2,1), transform 0.18s cubic-bezier(0.4,0,0.2,1);
+}
+.algovis-main:hover {
+    box-shadow: 0 0 48px 8px #00f7ffcc, 0 16px 48px #000c, 0 2px 12px #a259ff55;
+    transform: translateY(-4px) scale(1.01);
+}
+
+.algovis-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+    background: #111;
+    border-radius: var(--border-radius);
+    padding: 0.5rem 0.7rem;
+    box-shadow: none;
+    font-family: var(--font-main);
+}
+
+.algovis-controls label {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #00f7ff;
+}
+
+.algovis-controls select,
+.algovis-controls button {
+    font-family: var(--font-main);
+    box-shadow: none;
+    border: 1.2px solid #00f7ff88;
+    outline: none;
+    transition: box-shadow var(--transition), border-color var(--transition), background var(--transition), color var(--transition), transform 0.13s cubic-bezier(0.4,0,0.2,1);
+    background: #000;
+    color: #00f7ff;
+    margin-right: 0.2rem;
+    border-radius: 7px;
+    font-size: 1rem;
+    padding: 0.35rem 0.7rem;
+}
+
+.algovis-controls select:focus,
+.algovis-controls button:focus {
+    border-color: var(--accent-color);
+    box-shadow: var(--focus-ring);
+}
+
+/* Dropdown (select) improvements for all browsers */
+.algovis-controls select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: #000;
+    color: #a259ff;
+    border: 1.5px solid #00f7ff;
+    border-radius: 7px;
+    padding: 0.35rem 2.2rem 0.35rem 0.7rem;
+    font-size: 1rem;
+    font-family: var(--font-main);
+    box-shadow: 0 0 8px #00f7ff44;
+    position: relative;
+    transition: border-color var(--transition), box-shadow var(--transition), color var(--transition);
+    cursor: pointer;
+    outline: none;
+}
+.algovis-controls select:focus {
+    border-color: #a259ff;
+    box-shadow: 0 0 0 2px #a259ff88, var(--focus-ring);
+    outline: none;
+}
+.algovis-controls select option {
+    background: #111 !important;
+    color: #a259ff !important;
+    font-family: var(--font-main);
+}
+/* For Chromium browsers: force dropdown list color */
+.algovis-controls select:focus option,
+.algovis-controls select:active option {
+    color: #a259ff !important;
+    background: #111 !important;
+}
+/* For Firefox: force dropdown list color */
+.algovis-controls select:-moz-focusring option {
+    color: #a259ff !important;
+    background: #111 !important;
+}
+/* Custom dropdown arrow */
+.algovis-controls select {
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23a259ff" height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M7.293 7.293a1 1 0 011.414 0L10 8.586l1.293-1.293a1 1 0 111.414 1.414l-2 2a1 1 0 01-1.414 0l-2-2a1 1 0 010-1.414z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1.1em;
+}
+/* Neon border for open dropdown (Chromium) */
+.algovis-controls select:focus {
+    box-shadow: 0 0 0 2px #a259ffcc, 0 0 8px #00f7ff88;
+}
+/* Neon border for open dropdown (Firefox) */
+.algovis-controls select:-moz-focusring {
+    box-shadow: 0 0 0 2px #a259ffcc, 0 0 8px #00f7ff88;
+}
+/* Scrollbar styling for dropdowns (Webkit) */
+.algovis-controls select option::-webkit-scrollbar {
+    width: 8px;
+    background: #111;
+}
+.algovis-controls select option::-webkit-scrollbar-thumb {
+    background: #a259ff;
+    border-radius: 4px;
+}
+
+.algovis-controls button {
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    background: linear-gradient(90deg, #00f7ff 60%, #a259ff 100%);
+    color: #000;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 0 12px #00f7ff88, 0 2px 16px #a259ff44;
+    border-radius: 7px;
+    transition: background var(--transition), color var(--transition), box-shadow var(--transition), transform 0.18s cubic-bezier(0.4,0,0.2,1);
+    position: relative;
+    z-index: 1;
+}
+.algovis-controls button:hover,
+.algovis-controls button:focus {
+    background: linear-gradient(90deg, #a259ff 60%, #00f7ff 100%);
+    color: #fff;
+    box-shadow: 0 0 24px #a259ffcc, 0 4px 32px #00f7ff88;
+    transform: translateY(-3px) scale(1.06);
+    outline: none;
+}
+
+.algovis-canvas {
+    animation: var(--fadein);
+    box-shadow: 0 0 32px 8px #00f7ffcc, 0 8px 32px #a259ff44, 0 2px 16px #000a;
+    border: 2.5px solid #00f7ff;
+    background: rgba(0,0,0,0.85);
+    border-radius: var(--border-radius);
+    min-height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.2rem 1rem;
+    position: relative;
+    z-index: 2;
+    /* Glassy effect */
+    backdrop-filter: blur(2.5px) saturate(1.2);
+    transition: box-shadow 0.22s cubic-bezier(0.4,0,0.2,1), transform 0.18s cubic-bezier(0.4,0,0.2,1);
+}
+.algovis-canvas:hover {
+    box-shadow: 0 0 48px 16px #00f7ff, 0 16px 48px #a259ff77, 0 4px 24px #000c;
+    transform: translateY(-2px) scale(1.01);
+}
+
+#visualization-area {
+    width: 100%;
+    min-height: 160px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 4px;
+    border-radius: 12px;
+    background: rgba(0,0,0,0.92);
+    box-shadow: 0 0 24px 4px #00f7ff99, 0 2px 12px #a259ff33;
+    padding: 0.5rem 0.2rem;
+    position: relative;
+    z-index: 3;
+    /* Glassy effect */
+    backdrop-filter: blur(1.5px) saturate(1.1);
+}
+
+/* Info panel and headings polish */
+.algovis-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    background: #0a0a13;
+    border-radius: var(--border-radius);
+    padding: 0.9rem 1.1rem 0.7rem 1.1rem;
+    color: #00f7ff;
+    font-size: 1.01rem;
+    box-shadow: 0 0 12px #00f7ff22, 0 1.5px 6px #a259ff22;
+    border: 1.2px solid #00f7ff33;
+}
+.algorithm-info {
+    display: flex;
+    gap: 1.2rem;
+    margin-bottom: 0.3rem;
+}
+.algorithm-info h3 {
+    color: #ffb400;
+    font-size: 1.09rem;
+    margin: 0 0 0.2rem 0;
+    letter-spacing: 0.5px;
+    text-shadow: 0 1px 4px #a259ff33;
+}
+.complexity-info, .steps-info, .status-info {
+    flex: 1;
+    background: #18122b;
+    border-radius: 7px;
+    padding: 0.4rem 0.7rem;
+    margin-right: 0.5rem;
+    box-shadow: 0 0 8px #00f7ff22;
+    color: #fff;
+}
+.complexity-info:last-child, .steps-info:last-child, .status-info:last-child {
+    margin-right: 0;
+}
+.algorithm-details {
+    margin-top: 0.2rem;
+    color: #fff;
+    font-size: 0.99rem;
+    background: #18122b;
+    border-radius: 7px;
+    padding: 0.5rem 0.8rem;
+    box-shadow: 0 0 8px #a259ff22;
+}
+
+.algovis-footer {
+    font-family: var(--font-main);
+    background: var(--footer-bg);
+    color: #00f7ff;
+    text-align: center;
+    padding: 0.7rem 0.5rem 0.5rem 0.5rem;
+    margin-top: auto;
+    border-top: 1px solid #00f7ff44;
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    box-shadow: none;
+    font-size: 0.95rem;
+}
+
+.algovis-footer h2 {
+    margin-top: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #ffb400;
+}
+
+.algovis-footer p {
+    margin: 0.3rem 0 0 0;
+    font-size: 0.97rem;
+    opacity: 0.88;
+}
+
+.algovis-controls label,
+.algovis-controls select,
+.algovis-controls button {
+    color: #111;
+    font-family: var(--font-main);
+}
+
+/* Custom Dropdown Styles */
+.custom-dropdown {
+    position: relative;
+    display: inline-block;
+    min-width: 160px;
+    margin-right: 0.5rem;
+    font-family: var(--font-main);
+    z-index: 10;
+}
+.dropdown-selected {
+    background: #000;
+    color: #a259ff;
+    border: 1.5px solid #00f7ff;
+    border-radius: 7px;
+    padding: 0.35rem 2.2rem 0.35rem 0.7rem;
+    font-size: 1rem;
+    box-shadow: 0 0 8px #00f7ff44;
+    cursor: pointer;
+    transition: border-color var(--transition), box-shadow var(--transition), color var(--transition);
+    position: relative;
+    outline: none;
+    user-select: none;
+}
+.custom-dropdown:focus .dropdown-selected,
+.dropdown-selected:focus {
+    border-color: #a259ff;
+    box-shadow: 0 0 0 2px #a259ff88, var(--focus-ring);
+}
+.dropdown-list {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 110%;
+    min-width: 100%;
+    background: #18122b;
+    border: 1.5px solid #a259ff;
+    border-radius: 7px;
+    box-shadow: 0 0 16px #a259ff88, 0 2px 16px #00f7ff44;
+    z-index: 100;
+    padding: 0.2rem 0;
+    margin-top: 2px;
+    animation: fadein 0.18s cubic-bezier(0.4,0,0.2,1);
+}
+.dropdown-option {
+    color: #a259ff;
+    background: transparent;
+    padding: 0.35rem 1.2rem 0.35rem 0.7rem;
+    font-size: 1rem;
+    font-family: var(--font-main);
+    cursor: pointer;
+    transition: background 0.13s, color 0.13s;
+    border-radius: 5px;
+    user-select: none;
+}
+.dropdown-option:hover,
+.dropdown-option:focus {
+    background: #00f7ff33;
+    color: #fff;
+}
+.custom-dropdown.open .dropdown-list {
+    display: block;
+}
+
+/* Data Structures Playground - Moved to dedicated dataStructures.css file */
+
+@media (max-width: 800px) {
+    .algovis-main {
+        padding: 0.7rem 0.2rem;
+        font-size: 0.97rem;
+        max-width: 98vw;
+    }
+    .algovis-controls {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.7rem;
+        padding: 0.5rem 0.2rem;
+    }
+    .algovis-header {
+        padding: 0.7rem 0.2rem 0.5rem 0.2rem;
+    }
+}
+
+@media (max-width: 500px) {
+    .algovis-header h1 {
+        font-size: 1.05rem;
+    }
+    .algovis-main {
+        padding: 0.2rem 0.1rem;
+        font-size: 0.93rem;
+    }
+    .algovis-controls {
+        padding: 0.2rem 0.1rem;
+    }
+    .algovis-footer {
+        padding: 0.5rem 0.1rem 0.3rem 0.1rem;
+    }
+} 

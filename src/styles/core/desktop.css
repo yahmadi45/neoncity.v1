@@ -1,0 +1,688 @@
+/* ===== HACKER CYBERPUNK DESKTOP ULTRA ===== */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700;900&family=Share+Tech+Mono&display=swap');
+
+:root {
+    --neon-blue: #00f7ff;
+    --neon-purple: #9d00ff;
+    --neon-green: #00ff41;
+    --neon-red: #ff0040;
+    --neon-yellow: #ffff00;
+    --dark-bg: #000000;
+    --darker-bg: #0a0a0a;
+    --card-bg: rgba(10, 10, 10, 0.95);
+    --glass-bg: rgba(0, 0, 0, 0.98);
+    --border-glow: rgba(0, 247, 255, 0.4);
+    --shadow-deep: 0 8px 32px rgba(0, 0, 0, 0.5);
+    --shadow-glow: 0 0 30px rgba(0, 247, 255, 0.3);
+    --hacker-green: #00ff41;
+    --matrix-green: #00ff00;
+    --cyber-blue: #0080ff;
+    --terminal-bg: #000000;
+    --terminal-text: #00ff41;
+}
+
+/* ===== DESKTOP HACKER ULTRA - FOND NOIR PUR ===== */
+#desktop-section {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000000 !important;
+    display: none;
+    z-index: 100;
+    overflow: hidden;
+    animation: fadeIn 1s ease forwards;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+/* Style simple pour le desktop */
+#desktop-section.simple {
+    background: #000000 !important;
+    animation: none;
+}
+
+/* ===== ANIMATION PROFESSIONNELLE MODERNE ===== */
+
+/* Effet de grille moderne et subtile */
+#desktop-section::before {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    background-image: 
+        linear-gradient(rgba(0, 255, 65, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 65, 0.015) 1px, transparent 1px);
+    background-size: 100px 100px, 100px 100px;
+    animation: modernGridFlow 200s linear infinite;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Modern ambient light effect */
+#desktop-section::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(0, 255, 65, 0.02) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(0, 247, 255, 0.015) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(157, 0, 255, 0.01) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 2;
+    animation: modernAmbientLight 20s ease-in-out infinite;
+}
+
+/* Modern data stream effect */
+.data-stream {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 100px,
+            rgba(0, 255, 65, 0.05) 100px,
+            rgba(0, 255, 65, 0.05) 200px
+        );
+    pointer-events: none;
+    z-index: 3;
+    animation: modernDataStream 25s linear infinite;
+    opacity: 0.15;
+}
+
+/* Modern scan effect */
+.scan-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(0, 255, 65, 0.4), 
+        rgba(0, 247, 255, 0.4), 
+        transparent);
+    pointer-events: none;
+    z-index: 4;
+    animation: modernScanLine 20s ease-in-out infinite;
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
+}
+
+/* ===== MODERN ANIMATIONS ===== */
+
+@keyframes modernGridFlow {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-100px, -100px); }
+}
+
+@keyframes modernAmbientLight {
+    0%, 100% { 
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 0.5;
+        transform: scale(1.02);
+    }
+}
+
+@keyframes modernDataStream {
+    0% { 
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    10% { 
+        opacity: 0.15;
+    }
+    90% { 
+        opacity: 0.15;
+    }
+    100% { 
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+@keyframes modernScanLine {
+    0% { 
+        transform: translateY(-100vh);
+        opacity: 0;
+    }
+    10% { 
+        opacity: 1;
+    }
+    90% { 
+        opacity: 1;
+    }
+    100% { 
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+}
+
+/* Hacker Desktop Icons */
+#desktop-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 60px;
+    padding: 100px;
+    justify-content: flex-start;
+    align-content: flex-start;
+    min-height: calc(100vh - 120px);
+}
+
+/* Simple style for icons */
+#desktop-icons.simple {
+    gap: 40px;
+    padding: 60px;
+}
+
+.icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    width: 120px;
+    padding: 30px 25px;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    text-align: center;
+    position: relative;
+    box-shadow: 
+        0 8px 25px rgba(0, 0, 0, 0.8),
+        0 6px 18px rgba(0, 100, 0, 0.7),
+        0 4px 12px rgba(128, 0, 128, 0.6),
+        0 2px 8px rgba(0, 0, 139, 0.6),
+        0 0 15px rgba(0, 100, 0, 0.5);
+    transform: translateY(0);
+    animation: iconFloat 4s ease-in-out infinite;
+}
+
+.icon:nth-child(2n) {
+    animation-delay: 0.5s;
+}
+
+.icon:nth-child(3n) {
+    animation-delay: 1s;
+}
+
+.icon:nth-child(4n) {
+    animation-delay: 1.5s;
+}
+
+.icon:nth-child(5n) {
+    animation-delay: 2s;
+}
+
+.icon:nth-child(6n) {
+    animation-delay: 2.5s;
+}
+
+/* Simple style for icons */
+.icon.simple {
+    width: 100px;
+    padding: 25px 20px;
+    transition: all 0.5s ease;
+    box-shadow: 
+        0 6px 20px rgba(0, 0, 0, 0.7),
+        0 4px 12px rgba(0, 100, 0, 0.6),
+        0 2px 8px rgba(128, 0, 128, 0.5),
+        0 0 12px rgba(0, 0, 139, 0.4);
+    animation: iconFloat 5s ease-in-out infinite;
+}
+
+.icon.simple:hover {
+    transform: translateY(-15px) scale(1.12);
+    box-shadow: 
+        0 12px 30px rgba(0, 0, 0, 0.9),
+        0 8px 20px rgba(0, 100, 0, 0.8),
+        0 4px 12px rgba(128, 0, 128, 0.7),
+        0 0 35px rgba(0, 0, 139, 0.6),
+        0 0 20px rgba(0, 100, 0, 0.5);
+    animation-play-state: paused;
+}
+
+.icon:hover {
+    transform: translateY(-20px) scale(1.15);
+    box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 1.0),
+        0 15px 35px rgba(0, 100, 0, 0.9),
+        0 10px 25px rgba(128, 0, 128, 0.8),
+        0 5px 15px rgba(0, 0, 139, 0.8),
+        0 0 50px rgba(0, 100, 0, 0.7),
+        0 0 30px rgba(128, 0, 128, 0.6);
+    animation-play-state: paused;
+}
+
+.icon img {
+    width: 75px;
+    height: 75px;
+    object-fit: contain;
+    margin-bottom: 18px;
+    filter: drop-shadow(0 0 20px var(--neon-blue)) brightness(1.2);
+    border-radius: 18px;
+    transition: all 0.5s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.icon:hover img {
+    filter: drop-shadow(0 0 30px var(--neon-blue)) brightness(1.4) contrast(1.3);
+    transform: scale(1.2) rotate(5deg);
+}
+
+.icon p {
+    color: var(--neon-blue);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 14px;
+    margin: 0;
+    text-shadow: 0 0 12px var(--neon-blue);
+    font-weight: 600;
+    transition: all 0.5s ease;
+    position: relative;
+    z-index: 2;
+    letter-spacing: 1.5px;
+}
+
+.icon:hover p {
+    color: var(--neon-purple);
+    text-shadow: 0 0 18px var(--neon-purple), 0 0 30px var(--neon-purple);
+    transform: scale(1.15);
+    letter-spacing: 2.5px;
+    font-weight: 700;
+}
+
+/* ===== TASKBAR HACKER ULTRA ===== */
+#taskbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: 
+        linear-gradient(180deg, rgba(0, 0, 0, 0.95) 0%, rgba(10, 10, 10, 0.98) 100%);
+    backdrop-filter: blur(30px) saturate(1.5);
+    border-top: 4px solid var(--hacker-green);
+    border-radius: 25px 25px 0 0;
+    box-shadow: 
+        0 -10px 40px 0 rgba(0,0,0,0.6), 
+        0 0 40px 0 var(--hacker-green),
+        0 0 60px 0 rgba(0, 255, 65, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 45px;
+    z-index: 1000;
+    animation: taskbarHackerGlow 3s infinite alternate;
+    transition: all 0.5s ease;
+    opacity: 0;
+}
+
+/* Style simple pour la taskbar */
+#taskbar.simple {
+    background: 
+        linear-gradient(180deg, rgba(0, 0, 0, 0.98) 0%, rgba(10, 10, 10, 0.95) 100%);
+    border-top: 3px solid var(--hacker-green);
+    border-radius: 0;
+    box-shadow: 
+        0 -5px 20px rgba(0, 255, 65, 0.4),
+        0 0 30px rgba(0, 255, 65, 0.2);
+    animation: none;
+    height: 70px;
+    padding: 0 30px;
+}
+
+@keyframes taskbarHackerGlow {
+    0% { 
+        box-shadow: 0 -10px 40px 0 rgba(0,0,0,0.6), 0 0 40px 0 var(--hacker-green), 0 0 60px 0 rgba(0, 255, 65, 0.3);
+        border-top-color: var(--hacker-green);
+    }
+    50% { 
+        box-shadow: 0 -15px 60px 0 rgba(0,0,0,0.7), 0 0 60px 0 var(--neon-blue), 0 0 80px 0 rgba(0, 247, 255, 0.4);
+        border-top-color: var(--neon-blue);
+    }
+    100% { 
+        box-shadow: 0 -10px 40px 0 rgba(0,0,0,0.6), 0 0 40px 0 var(--hacker-green), 0 0 60px 0 rgba(0, 255, 65, 0.3);
+        border-top-color: var(--hacker-green);
+    }
+}
+
+.taskbar-btn {
+    background: rgba(0, 0, 0, 0.4);
+    border: 2px solid transparent;
+    cursor: pointer;
+    padding: 16px;
+    border-radius: 18px;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px 0 rgba(0,0,0,0.3);
+    backdrop-filter: blur(10px);
+}
+
+.taskbar-btn::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, var(--hacker-green) 0%, transparent 80%);
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.7);
+    transition: opacity 0.4s, width 0.4s, height 0.4s, filter 0.4s;
+    z-index: 0;
+    pointer-events: none;
+    filter: blur(8px);
+}
+
+.taskbar-btn:hover::after {
+    width: 140px;
+    height: 140px;
+    opacity: 0.25;
+    filter: blur(15px) brightness(1.3);
+}
+
+.taskbar-btn:hover {
+    background: rgba(0, 255, 65, 0.15);
+    border-color: var(--hacker-green);
+    transform: translateY(-8px) scale(1.15);
+    box-shadow: 
+        0 12px 40px 0 var(--hacker-green), 
+        0 0 40px 0 var(--neon-blue),
+        0 0 60px 0 rgba(0, 255, 65, 0.4);
+}
+
+.taskbar-btn img {
+    width: 36px;
+    height: 36px;
+    filter: invert(1) sepia(1) hue-rotate(120deg) saturate(8) brightness(1.2);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 1;
+}
+
+.taskbar-btn:hover img {
+    filter: invert(1) sepia(1) hue-rotate(120deg) saturate(15) brightness(1.5) drop-shadow(0 0 20px var(--hacker-green));
+    transform: scale(1.25) rotate(5deg);
+}
+
+/* Informations utilisateur dans la taskbar */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    color: white;
+    font-family: 'Share Tech Mono', monospace;
+    font-weight: 700;
+    padding: 12px 20px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 15px;
+    border: 2px solid transparent;
+    backdrop-filter: blur(10px);
+    transition: all 0.4s ease;
+}
+
+.user-info:hover {
+    border-color: var(--hacker-green);
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+}
+
+.username {
+    color: var(--hacker-green);
+    font-weight: 900;
+    text-shadow: 0 0 12px var(--hacker-green), 0 0 20px var(--hacker-green);
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+
+.time {
+    color: var(--neon-blue);
+    font-weight: 700;
+    text-shadow: 0 0 12px var(--neon-blue), 0 0 20px var(--neon-blue);
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+/* ===== ULTRA APPLICATION WINDOWS ===== */
+.app-window {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    width: 90%;
+    max-width: 1200px;
+    height: 85%;
+    max-height: 800px;
+    background: var(--card-bg);
+    border: 2px solid var(--neon-blue);
+    border-radius: 16px;
+    box-shadow: 
+        0 0 40px rgba(0, 247, 255, 0.3),
+        0 10px 30px rgba(0, 0, 0, 0.5);
+    z-index: 500;
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.app-header {
+    background: linear-gradient(135deg, var(--neon-purple), var(--neon-blue));
+    color: black;
+    padding: 20px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: bold;
+    border-bottom: 2px solid rgba(0, 247, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.app-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    animation: headerShine 3s infinite;
+}
+
+@keyframes headerShine {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+.app-header h3 {
+    margin: 0;
+    font-size: 18px;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 1;
+}
+
+.close-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: black;
+    font-size: 22px;
+    cursor: pointer;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(1.1) rotate(90deg);
+}
+
+.app-content {
+    padding: 25px;
+    height: calc(100% - 80px);
+    overflow-y: auto;
+    color: white;
+    font-family: 'Rajdhani', sans-serif;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+/* ===== ADDITIONAL HACKER EFFECTS ===== */
+
+/* Icon floating animation with color gradient */
+@keyframes iconFloat {
+    0% { 
+        transform: translateY(0px); 
+        box-shadow: 
+            0 8px 25px rgba(0, 0, 0, 0.8),
+            0 6px 18px rgba(0, 100, 0, 0.7),
+            0 4px 12px rgba(128, 0, 128, 0.6),
+            0 2px 8px rgba(0, 0, 139, 0.6),
+            0 0 15px rgba(0, 100, 0, 0.5);
+    }
+    25% { 
+        transform: translateY(-4px); 
+        box-shadow: 
+            0 12px 35px rgba(0, 0, 0, 0.9),
+            0 10px 25px rgba(128, 0, 128, 0.8),
+            0 8px 18px rgba(0, 0, 139, 0.7),
+            0 6px 12px rgba(0, 100, 0, 0.6),
+            0 0 20px rgba(128, 0, 128, 0.6);
+    }
+    50% { 
+        transform: translateY(-8px); 
+        box-shadow: 
+            0 15px 40px rgba(0, 0, 0, 1.0),
+            0 12px 30px rgba(0, 0, 139, 0.8),
+            0 10px 20px rgba(0, 100, 0, 0.7),
+            0 8px 15px rgba(128, 0, 128, 0.6),
+            0 0 25px rgba(0, 0, 139, 0.7);
+    }
+    75% { 
+        transform: translateY(-4px); 
+        box-shadow: 
+            0 12px 35px rgba(0, 0, 0, 0.9),
+            0 10px 25px rgba(0, 100, 0, 0.8),
+            0 8px 18px rgba(128, 0, 128, 0.7),
+            0 6px 12px rgba(0, 0, 139, 0.6),
+            0 0 20px rgba(0, 100, 0, 0.6);
+    }
+    100% { 
+        transform: translateY(0px); 
+        box-shadow: 
+            0 8px 25px rgba(0, 0, 0, 0.8),
+            0 6px 18px rgba(0, 100, 0, 0.7),
+            0 4px 12px rgba(128, 0, 128, 0.6),
+            0 2px 8px rgba(0, 0, 139, 0.6),
+            0 0 15px rgba(0, 100, 0, 0.5);
+    }
+}
+
+/* Glitch effect on icons */
+.icon:hover {
+    animation: iconGlitch 0.4s ease-in-out;
+}
+
+@keyframes iconGlitch {
+    0%, 100% { transform: translateY(-20px) scale(1.15); }
+    10% { transform: translateY(-20px) scale(1.15) translateX(-3px); }
+    20% { transform: translateY(-20px) scale(1.15) translateX(3px); }
+    30% { transform: translateY(-20px) scale(1.15) translateX(-2px); }
+    40% { transform: translateY(-20px) scale(1.15) translateX(2px); }
+    50% { transform: translateY(-20px) scale(1.15) translateX(-1px); }
+    60% { transform: translateY(-20px) scale(1.15) translateX(1px); }
+}
+
+/* Effet de pulsation sur la taskbar */
+#taskbar::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--hacker-green), var(--neon-blue), var(--neon-purple));
+    animation: taskbarPulse 2s ease-in-out infinite;
+    z-index: 2;
+}
+
+@keyframes taskbarPulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #desktop-icons {
+        gap: 35px;
+        padding: 50px;
+    }
+    
+    .icon {
+        width: 100px;
+        padding: 25px 20px;
+    }
+    
+    .icon img {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .icon p {
+        font-size: 12px;
+    }
+    
+    .app-window {
+        width: 95%;
+        height: 85%;
+    }
+    
+    .user-info {
+        gap: 20px;
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+    
+    #taskbar {
+        height: 70px;
+        padding: 0 30px;
+    }
+    
+    .taskbar-btn {
+        padding: 12px;
+    }
+    
+    .taskbar-btn img {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

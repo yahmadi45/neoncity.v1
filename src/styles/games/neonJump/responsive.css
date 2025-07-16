@@ -1,0 +1,317 @@
+/**
+ * NeonJump Responsive Design
+ * Mobile-first responsive styles
+ */
+
+/* ===== RESPONSIVE BREAKPOINTS ===== */
+@media (max-width: 1200px) {
+    .neon-title h1 {
+        font-size: 3.5rem;
+    }
+    
+    .difficulty-buttons {
+        gap: var(--spacing-md);
+    }
+    
+    .neon-btn {
+        min-width: 110px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* ===== TITLE ADJUSTMENTS ===== */
+    .neon-title h1 {
+        font-size: 2.5rem;
+        letter-spacing: 2px;
+    }
+    
+    .neon-subtitle {
+        font-size: 1rem;
+        letter-spacing: 2px;
+    }
+    
+    /* ===== BUTTON ADJUSTMENTS ===== */
+    .difficulty-buttons {
+        flex-direction: column;
+        gap: var(--spacing-md);
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .neon-btn {
+        font-size: 1rem;
+        padding: var(--spacing-sm) var(--spacing-lg);
+        min-width: 100px;
+        width: 100%;
+    }
+    
+    .btn-text {
+        font-size: 1.1rem;
+    }
+    
+    .btn-subtitle {
+        font-size: 0.7rem;
+    }
+    
+    /* ===== GAME HEADER ===== */
+    .game-header {
+        padding: var(--spacing-sm);
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+    
+    .game-info {
+        font-size: 12px;
+        gap: var(--spacing-sm);
+    }
+    
+    /* ===== CANVAS ADJUSTMENTS ===== */
+    #neon-canvas {
+        border-width: 2px;
+        border-radius: var(--radius-md);
+        max-width: 95%;
+        max-height: 80vh;
+    }
+    
+    .canvas-container {
+        padding: var(--spacing-sm);
+    }
+    
+    /* ===== MENU SCREENS ===== */
+    .neon-menu-screen,
+    .neon-game-over-screen,
+    .neon-victory-screen {
+        padding: var(--spacing-md);
+    }
+    
+    .neon-game-over-screen h2,
+    .neon-victory-screen h2 {
+        font-size: 2rem;
+        text-align: center;
+    }
+    
+    .game-over-stats,
+    .victory-stats {
+        padding: var(--spacing-lg);
+        margin: var(--spacing-md) 0;
+    }
+    
+    .game-over-stats p,
+    .victory-stats p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    /* ===== TITLE ADJUSTMENTS ===== */
+    .neon-title h1 {
+        font-size: 2rem;
+        letter-spacing: 1px;
+    }
+    
+    .neon-subtitle {
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+    }
+    
+    /* ===== BUTTON ADJUSTMENTS ===== */
+    .neon-btn {
+        font-size: 0.9rem;
+        padding: var(--spacing-xs) var(--spacing-md);
+        min-width: 80px;
+    }
+    
+    .btn-text {
+        font-size: 1rem;
+    }
+    
+    .btn-subtitle {
+        font-size: 0.6rem;
+    }
+    
+    /* ===== GAME HEADER ===== */
+    .game-header {
+        padding: var(--spacing-xs);
+    }
+    
+    .game-info {
+        font-size: 10px;
+        flex-direction: column;
+        gap: var(--spacing-xs);
+    }
+    
+    .game-info span {
+        padding: var(--spacing-xs);
+        font-size: 10px;
+    }
+    
+    /* ===== CANVAS ADJUSTMENTS ===== */
+    #neon-canvas {
+        border-width: 1px;
+        border-radius: var(--radius-sm);
+        max-width: 98%;
+        max-height: 75vh;
+    }
+    
+    .canvas-container {
+        padding: var(--spacing-xs);
+    }
+    
+    /* ===== MENU SCREENS ===== */
+    .neon-menu-screen,
+    .neon-game-over-screen,
+    .neon-victory-screen {
+        padding: var(--spacing-sm);
+    }
+    
+    .neon-game-over-screen h2,
+    .neon-victory-screen h2 {
+        font-size: 1.5rem;
+        letter-spacing: 1px;
+    }
+    
+    .game-over-stats,
+    .victory-stats {
+        padding: var(--spacing-md);
+        margin: var(--spacing-sm) 0;
+    }
+    
+    .game-over-stats p,
+    .victory-stats p {
+        font-size: 0.9rem;
+        margin: var(--spacing-xs) 0;
+    }
+    
+    /* ===== DIFFICULTY SELECTOR ===== */
+    .difficulty-selector h3 {
+        font-size: 1.4rem;
+        margin-bottom: var(--spacing-lg);
+    }
+}
+
+@media (max-width: 360px) {
+    /* ===== EXTRA SMALL SCREENS ===== */
+    .neon-title h1 {
+        font-size: 1.8rem;
+    }
+    
+    .neon-subtitle {
+        font-size: 0.8rem;
+    }
+    
+    .neon-btn {
+        font-size: 0.8rem;
+        padding: var(--spacing-xs);
+        min-width: 70px;
+    }
+    
+    .btn-text {
+        font-size: 0.9rem;
+    }
+    
+    .btn-subtitle {
+        font-size: 0.5rem;
+    }
+    
+    .neon-game-over-screen h2,
+    .neon-victory-screen h2 {
+        font-size: 1.3rem;
+    }
+}
+
+/* ===== LANDSCAPE ORIENTATION ===== */
+@media (max-height: 500px) and (orientation: landscape) {
+    .neon-title h1 {
+        font-size: 2rem;
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .neon-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .difficulty-selector {
+        margin: var(--spacing-md) 0;
+    }
+    
+    .difficulty-selector h3 {
+        font-size: 1.2rem;
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .difficulty-buttons {
+        flex-direction: row;
+        gap: var(--spacing-sm);
+    }
+    
+    .neon-btn {
+        font-size: 0.9rem;
+        padding: var(--spacing-xs) var(--spacing-md);
+    }
+    
+    .btn-text {
+        font-size: 1rem;
+    }
+    
+    .btn-subtitle {
+        font-size: 0.6rem;
+    }
+}
+
+/* ===== HIGH DPI DISPLAYS ===== */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .neon-btn {
+        border-width: 1px;
+    }
+    
+    #neon-canvas {
+        border-width: 1px;
+    }
+}
+
+/* ===== REDUCED MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+    .neon-jump-container::before,
+    .neon-title,
+    .neon-subtitle,
+    .neon-btn::before {
+        animation: none;
+    }
+    
+    .neon-btn:hover {
+        transform: none;
+    }
+}
+
+/* ===== HIGH CONTRAST ===== */
+@media (prefers-contrast: high) {
+    .neon-btn {
+        border-width: 3px;
+        background: var(--black);
+    }
+    
+    .game-over-stats,
+    .victory-stats {
+        border-width: 3px;
+        background: var(--black);
+    }
+    
+    #neon-canvas {
+        border-width: 3px;
+    }
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+    .neon-jump-container {
+        background: white !important;
+        color: black !important;
+    }
+    
+    .neon-btn,
+    .game-header,
+    .canvas-container {
+        display: none !important;
+    }
+} 

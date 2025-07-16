@@ -1,0 +1,371 @@
+/**
+ * NeonJump Main CSS
+ * Master stylesheet that imports all CSS modules
+ */
+
+/* ===== CORE STYLES ===== */
+@import './variables.css';
+@import './base.css';
+@import './canvas.css';
+@import './menu.css';
+@import './buttons.css';
+@import './responsive.css';
+
+/* ===== GLOBAL RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+    font-family: var(--font-primary);
+    background: var(--black);
+    color: var(--neon-green);
+}
+
+/* ===== NEO CITY OS INTERFACE ===== */
+#neonjump-interface {
+    width: 100%;
+    height: 100vh;
+    background: var(--black);
+    color: var(--neon-green);
+    font-family: var(--font-primary);
+    overflow: hidden;
+}
+
+.back-to-desktop {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: var(--glass-bg);
+    border: 2px solid var(--glass-border);
+    color: var(--neon-green);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-family: var(--font-primary);
+    font-weight: 700;
+    transition: var(--transition-normal);
+    backdrop-filter: blur(10px);
+    z-index: var(--z-ui);
+}
+
+.back-to-desktop:hover {
+    background: rgba(0, 255, 65, 0.2);
+    box-shadow: var(--box-shadow);
+    transform: scale(1.05);
+}
+
+.neocity-header {
+    text-align: center;
+    padding: var(--spacing-lg);
+    background: var(--glass-bg);
+    border-bottom: 2px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+}
+
+.neocity-title {
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin: 0;
+    background: linear-gradient(45deg, 
+        var(--neon-green), 
+        var(--neon-blue), 
+        var(--neon-purple), 
+        var(--neon-green));
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: neonGlow 2s ease-in-out infinite alternate;
+    text-shadow: var(--text-shadow);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+.neocity-subtitle {
+    font-size: 1.2rem;
+    color: var(--neon-blue);
+    margin: var(--spacing-sm) 0;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 0 0 10px var(--neon-blue);
+}
+
+.neocity-game-container {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 120px);
+}
+
+.neocity-stats {
+    display: flex;
+    justify-content: space-around;
+    padding: var(--spacing-md);
+    background: var(--glass-bg);
+    border-bottom: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+}
+
+.stat-card {
+    background: rgba(0, 255, 65, 0.1);
+    border: 1px solid rgba(0, 255, 65, 0.3);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-sm);
+    text-align: center;
+    cursor: pointer;
+    transition: var(--transition-normal);
+    min-width: 120px;
+}
+
+.stat-card:hover {
+    background: rgba(0, 255, 65, 0.2);
+    box-shadow: var(--box-shadow);
+    transform: scale(1.05);
+}
+
+.stat-title {
+    font-size: 0.8rem;
+    color: var(--neon-cyan);
+    margin-bottom: var(--spacing-xs);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.stat-value {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--neon-green);
+    text-shadow: var(--text-shadow);
+}
+
+.neocity-controls {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    background: var(--glass-bg);
+    border-bottom: 1px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+    flex-wrap: wrap;
+}
+
+.neocity-btn {
+    background: var(--glass-bg);
+    border: 2px solid var(--glass-border);
+    color: var(--neon-green);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-family: var(--font-primary);
+    font-weight: 700;
+    transition: var(--transition-normal);
+    backdrop-filter: blur(10px);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+}
+
+.neocity-btn:hover {
+    background: rgba(0, 255, 65, 0.2);
+    box-shadow: var(--box-shadow);
+    transform: scale(1.05);
+}
+
+.neocity-game-area {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+#game-content {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+/* ===== UTILITY CLASSES ===== */
+.hidden {
+    display: none !important;
+}
+
+.visible {
+    display: block !important;
+}
+
+.flex {
+    display: flex !important;
+}
+
+.flex-center {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.flex-column {
+    flex-direction: column !important;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.text-left {
+    text-align: left !important;
+}
+
+.text-right {
+    text-align: right !important;
+}
+
+/* ===== ANIMATION UTILITIES ===== */
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+.slide-up {
+    animation: slideInUp 0.5s ease-out;
+}
+
+.pulse {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.glow {
+    animation: neonGlow 2s ease-in-out infinite alternate;
+}
+
+/* ===== PERFORMANCE OPTIMIZATIONS ===== */
+.neon-jump-container * {
+    will-change: transform, opacity;
+}
+
+.neon-btn {
+    will-change: transform, box-shadow;
+}
+
+#neon-canvas {
+    will-change: transform;
+}
+
+/* ===== FOCUS MANAGEMENT ===== */
+.neon-btn:focus-visible {
+    outline: 2px solid var(--neon-green);
+    outline-offset: 2px;
+}
+
+#neon-canvas:focus-visible {
+    outline: 2px solid var(--neon-green);
+    outline-offset: 4px;
+}
+
+/* ===== SCROLLBAR STYLING ===== */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--dark-gray);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--neon-green);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--neon-blue);
+}
+
+/* ===== SELECTION STYLING ===== */
+::selection {
+    background: var(--neon-green);
+    color: var(--black);
+}
+
+::-moz-selection {
+    background: var(--neon-green);
+    color: var(--black);
+}
+
+/* ===== LOADING STATES ===== */
+.loading {
+    position: relative;
+    overflow: hidden;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.2), transparent);
+    animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* ===== ERROR STATES ===== */
+.error {
+    border-color: var(--neon-red) !important;
+    color: var(--neon-red) !important;
+    animation: errorShake 0.5s ease-in-out;
+}
+
+@keyframes errorShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* ===== SUCCESS STATES ===== */
+.success {
+    border-color: var(--neon-green) !important;
+    color: var(--neon-green) !important;
+    animation: successPulse 0.5s ease-in-out;
+}
+
+@keyframes successPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* ===== DEBUG MODE ===== */
+.debug {
+    border: 1px solid var(--neon-red);
+}
+
+.debug * {
+    outline: 1px solid rgba(255, 0, 0, 0.3);
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+    .neon-jump-container {
+        background: white !important;
+        color: black !important;
+    }
+    
+    .neon-btn,
+    .game-header,
+    .canvas-container {
+        display: none !important;
+    }
+    
+    .neon-title h1 {
+        color: black !important;
+        background: none !important;
+        -webkit-text-fill-color: black !important;
+    }
+} 

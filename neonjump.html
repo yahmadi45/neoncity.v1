@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔥 Neon Jump - Game 🔥</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/styles/games/neonJump/main.css">
+    <link rel="stylesheet" href="src/styles/games/neonJump/menu.css">
+    <link rel="stylesheet" href="src/styles/games/neonJump/game.css">
+    <link rel="stylesheet" href="src/styles/games/neonJump/base.css">
+    <link rel="stylesheet" href="src/styles/games/neonJump/buttons.css">
+    <link rel="stylesheet" href="src/styles/games/neonJump/canvas.css">
+    <link rel="stylesheet" href="src/styles/games/neonJump/responsive.css">
+    <link rel="stylesheet" href="src/styles/games/neonJump/variables.css">
+</head>
+<body>
+    <div class="game-container">
+        <!-- Game Canvas -->
+        <canvas id="neon-canvas"></canvas>
+        
+        <!-- Game UI -->
+        <div class="game-ui">
+            <div class="game-info">
+                <span id="health-display">Health: 100</span>
+                <span id="score-display">Score: 0</span>
+                <span id="level-display">Level: 1</span>
+                <span id="checkpoint-display">Checkpoints: 0/0</span>
+            </div>
+            <div class="game-controls">
+                <button class="game-btn" onclick="togglePause()">PAUSE</button>
+                <button class="game-btn secondary" onclick="goBackToWelcome()">WELCOME</button>
+                <button class="game-btn exit" onclick="goBackToDesktopFromGame()">EXIT TO DESKTOP</button>
+            </div>
+        </div>
+        
+        <!-- Menu Screen -->
+        <div id="neon-menu-screen" class="neon-menu-screen">
+            <div class="neon-title">
+                <h1>NEON JUMP</h1>
+                <div class="neon-subtitle">Game Menu</div>
+            </div>
+            <div class="menu-actions" style="margin-top: 30px;">
+                <button class="neon-btn btn-primary" onclick="restartNeonJumpGame()">
+                    <div class="btn-text">RESTART</div>
+                </button>
+                <button class="neon-btn btn-secondary" onclick="togglePause()">
+                    <div class="btn-text">RESUME</div>
+                </button>
+                <button class="neon-btn btn-danger" onclick="goBackToDesktopFromGame()">
+                    <div class="btn-text">EXIT TO DESKTOP</div>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Game Over Screen -->
+        <div id="neon-game-over-screen" class="neon-game-over-screen">
+            <h2>GAME OVER</h2>
+            <div class="game-over-stats">
+                <p>Final Score: <span id="final-score">0</span></p>
+                <p>Time Survived: <span id="time-survived">0:00</span></p>
+                <p>Checkpoints Collected: <span id="checkpoints-collected">0</span></p>
+            </div>
+            <div class="btn-group">
+                <button class="neon-btn btn-primary" onclick="restartNeonJumpGame()">
+                    <div class="btn-text">RESTART</div>
+                </button>
+                <button class="neon-btn btn-secondary" onclick="goBackToWelcome()">
+                    <div class="btn-text">WELCOME</div>
+                </button>
+                <button class="neon-btn btn-danger" onclick="goBackToDesktopFromGame()">
+                    <div class="btn-text">EXIT TO DESKTOP</div>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Victory Screen -->
+        <div id="neon-victory-screen" class="neon-victory-screen">
+            <h2>VICTORY!</h2>
+            <div class="victory-stats">
+                <p>Final Score: <span id="victory-score">0</span></p>
+                <p>Time: <span id="victory-time">0:00</span></p>
+                <p>Checkpoints: <span id="victory-checkpoints">0</span></p>
+            </div>
+            <div class="btn-group">
+                <button class="neon-btn btn-success" onclick="restartNeonJumpGame()">
+                    <div class="btn-text">PLAY AGAIN</div>
+                </button>
+                <button class="neon-btn btn-secondary" onclick="goBackToWelcome()">
+                    <div class="btn-text">WELCOME</div>
+                </button>
+                <button class="neon-btn btn-danger" onclick="goBackToDesktopFromGame()">
+                    <div class="btn-text">EXIT TO DESKTOP</div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load Game Scripts -->
+    <script src="src/games/neonJump/config.js"></script>
+    <script src="src/games/neonJump/utils.js"></script>
+    <script src="src/games/neonJump/audioManager.js"></script>
+    <script src="src/games/neonJump/particleSystem.js"></script>
+    <script src="src/games/neonJump/physics.js"></script>
+    <script src="src/games/neonJump/entities.js"></script>
+    <script src="src/games/neonJump/camera.js"></script>
+    <script src="src/games/neonJump/levelGenerator.js"></script>
+    <script src="src/games/neonJump/game.js"></script>
+    <script src="src/games/neonJump/main.js"></script>
+    <script src="src/games/neonJump/game-ui.js"></script>
+</body>
+</html> 

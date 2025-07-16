@@ -1,0 +1,145 @@
+/**
+ * NeonJump Base Styles
+ * Main container and layout styles
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap');
+
+/* ===== MAIN CONTAINER ===== */
+.neon-jump-container {
+    width: 100%;
+    height: 100%;
+    background: var(--black);
+    color: var(--neon-green);
+    font-family: var(--font-primary);
+    overflow: hidden;
+    position: relative;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ===== ENHANCED BLACK BACKGROUND ===== */
+.neon-jump-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(0, 255, 65, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(0, 247, 255, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(157, 0, 255, 0.02) 0%, transparent 60%),
+        linear-gradient(45deg, transparent 49%, rgba(0, 255, 65, 0.02) 50%, transparent 51%);
+    background-size: 100% 100%, 100% 100%, 100% 100%, 50px 50px;
+    animation: backgroundPulse 8s ease-in-out infinite;
+    pointer-events: none;
+    z-index: var(--z-background);
+}
+
+@keyframes backgroundPulse {
+    0%, 100% { 
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% { 
+        opacity: 0.6;
+        transform: scale(1.02);
+    }
+}
+
+/* ===== GAME SCREEN ===== */
+.neon-game-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    flex-direction: column;
+    z-index: var(--z-game);
+}
+
+.neon-game-screen.active {
+    display: flex;
+}
+
+/* ===== GAME HEADER ===== */
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md);
+    background: var(--glass-bg);
+    border-bottom: 2px solid var(--glass-border);
+    backdrop-filter: blur(10px);
+}
+
+.game-info {
+    display: flex;
+    gap: var(--spacing-lg);
+    color: var(--neon-green);
+    font-family: var(--font-primary);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.game-info span {
+    text-shadow: var(--text-shadow);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background: rgba(0, 255, 65, 0.1);
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(0, 255, 65, 0.3);
+}
+
+/* ===== PAUSE BUTTON ===== */
+.neon-pause-btn {
+    background: var(--glass-bg);
+    border: 2px solid var(--glass-border);
+    color: var(--neon-green);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-family: var(--font-primary);
+    font-weight: 700;
+    transition: var(--transition-normal);
+    backdrop-filter: blur(10px);
+}
+
+.neon-pause-btn:hover {
+    background: rgba(0, 255, 65, 0.2);
+    box-shadow: var(--box-shadow);
+    transform: scale(1.05);
+}
+
+/* ===== LOADING STATE ===== */
+.neon-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: var(--neon-green);
+    font-family: var(--font-primary);
+    font-size: 18px;
+    text-shadow: var(--text-shadow);
+}
+
+.neon-loading::after {
+    content: '';
+    width: 40px;
+    height: 40px;
+    border: 3px solid transparent;
+    border-top: 3px solid var(--neon-green);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-top: var(--spacing-md);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+} 

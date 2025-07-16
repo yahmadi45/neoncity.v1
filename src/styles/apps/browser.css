@@ -1,0 +1,667 @@
+/* Browser Styles */
+
+:root {
+    --browser-primary: #00f7ff;
+    --browser-secondary: #a259ff;
+    --browser-accent: #ffb400;
+    --browser-bg: #000;
+    --browser-surface: #111;
+    --browser-surface-light: #1a1a1a;
+    --browser-text: #fff;
+    --browser-text-secondary: rgba(255, 255, 255, 0.7);
+    --browser-border: #00f7ff44;
+    --browser-border-hover: #00f7ff88;
+    --browser-shadow: 0 0 16px #00f7ff33;
+    --browser-shadow-hover: 0 0 24px #00f7ff66;
+    --browser-transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --browser-radius: 12px;
+    --browser-radius-small: 8px;
+    --font-main: 'Orbitron', 'Segoe UI', 'Arial', sans-serif;
+}
+
+/* Main Browser Container */
+.browser-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font-main);
+    background: var(--browser-bg);
+    color: var(--browser-text);
+    border-radius: var(--browser-radius);
+    overflow: hidden;
+    box-shadow: 0 0 32px #00f7ff88, 0 8px 32px #000a;
+    border: 1.5px solid var(--browser-primary);
+    position: relative;
+}
+
+/* Progress Bar */
+.browser-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--browser-primary), var(--browser-secondary));
+    transition: width 0.3s ease, opacity 0.3s ease;
+    z-index: 1000;
+    border-radius: 0 2px 2px 0;
+    box-shadow: 0 0 8px var(--browser-primary);
+}
+
+/* Browser Toolbar */
+.browser-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    background: var(--browser-surface);
+    border-bottom: 1px solid var(--browser-border);
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 100;
+}
+
+/* Navigation Buttons */
+.browser-nav {
+    display: flex;
+    gap: 8px;
+    margin-right: 12px;
+}
+
+.nav-btn {
+    background: var(--browser-surface-light);
+    border: 1.5px solid var(--browser-border);
+    color: var(--browser-primary);
+    padding: 8px 12px;
+    border-radius: var(--browser-radius-small);
+    cursor: pointer;
+    font-family: var(--font-main);
+    font-weight: 600;
+    font-size: 14px;
+    transition: all var(--browser-transition);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 40px;
+    justify-content: center;
+}
+
+.nav-btn:hover:not(:disabled) {
+    background: var(--browser-primary);
+    color: var(--browser-bg);
+    border-color: var(--browser-primary);
+    box-shadow: var(--browser-shadow);
+    transform: translateY(-1px);
+}
+
+.nav-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.nav-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--browser-primary), var(--browser-shadow);
+}
+
+/* Security Indicator */
+.security-indicator {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    margin-right: 8px;
+    border: 2px solid currentColor;
+    position: relative;
+}
+
+.security-indicator.secure {
+    background: #00ff88;
+    color: #00ff88;
+    box-shadow: 0 0 8px #00ff8844;
+}
+
+.security-indicator.insecure {
+    background: #ff4444;
+    color: #ff4444;
+    box-shadow: 0 0 8px #ff444444;
+}
+
+/* Address Bar */
+.address-bar-container {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.address-bar {
+    width: 100%;
+    background: var(--browser-surface-light);
+    border: 1.5px solid var(--browser-border);
+    color: var(--browser-text);
+    padding: 12px 16px;
+    border-radius: var(--browser-radius-small);
+    outline: none;
+    font-family: var(--font-main);
+    font-size: 14px;
+    transition: all var(--browser-transition);
+    position: relative;
+}
+
+.address-bar:focus {
+    border-color: var(--browser-primary);
+    box-shadow: var(--browser-shadow);
+    background: var(--browser-surface);
+}
+
+.address-bar::placeholder {
+    color: var(--browser-text-secondary);
+}
+
+/* Go Button */
+.go-btn {
+    background: linear-gradient(135deg, var(--browser-primary), var(--browser-secondary));
+    color: var(--browser-bg);
+    border: none;
+    padding: 12px 20px;
+    border-radius: var(--browser-radius-small);
+    cursor: pointer;
+    font-family: var(--font-main);
+    font-weight: 700;
+    font-size: 14px;
+    transition: all var(--browser-transition);
+    margin-left: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.go-btn:hover {
+    box-shadow: var(--browser-shadow-hover);
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, var(--browser-secondary), var(--browser-primary));
+}
+
+.go-btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--browser-primary), var(--browser-shadow);
+}
+
+/* Search Suggestions */
+.search-suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--browser-surface);
+    border: 1.5px solid var(--browser-primary);
+    border-top: none;
+    border-radius: 0 0 var(--browser-radius-small) var(--browser-radius-small);
+    z-index: 1000;
+    max-height: 200px;
+    overflow-y: auto;
+    box-shadow: var(--browser-shadow);
+    display: none;
+}
+
+.suggestion-item {
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: all var(--browser-transition);
+    border-bottom: 1px solid var(--browser-border);
+    color: var(--browser-text);
+    font-family: var(--font-main);
+    font-size: 14px;
+}
+
+.suggestion-item:hover {
+    background: var(--browser-primary);
+    color: var(--browser-bg);
+}
+
+.suggestion-item:last-child {
+    border-bottom: none;
+}
+
+/* Browser Content Area */
+.browser-content {
+    flex: 1;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 400px;
+    overflow: hidden;
+}
+
+/* Browser Iframe */
+.browser-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 0;
+    background: var(--browser-bg);
+    display: block;
+    transition: opacity var(--browser-transition);
+}
+
+/* Loading Indicator */
+.loading-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: var(--browser-primary);
+    backdrop-filter: blur(4px);
+}
+
+.loading-spinner {
+    width: 32px;
+    height: 32px;
+    border: 3px solid rgba(0, 247, 255, 0.3);
+    border-top: 3px solid var(--browser-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-right: 16px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Error Page */
+.error-page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(30, 0, 0, 0.9);
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--browser-text);
+    text-align: center;
+    padding: 40px;
+    backdrop-filter: blur(8px);
+}
+
+.error-page h2 {
+    color: #ff4444;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    text-shadow: 0 0 16px #ff4444;
+    font-family: var(--font-main);
+}
+
+.error-page p {
+    color: var(--browser-text-secondary);
+    font-size: 1.1em;
+    margin-bottom: 30px;
+    max-width: 500px;
+    line-height: 1.6;
+}
+
+.error-page button {
+    background: linear-gradient(135deg, var(--browser-primary), var(--browser-secondary));
+    color: var(--browser-bg);
+    border: none;
+    padding: 12px 24px;
+    border-radius: var(--browser-radius-small);
+    cursor: pointer;
+    font-family: var(--font-main);
+    font-weight: 700;
+    font-size: 14px;
+    transition: all var(--browser-transition);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.error-page button:hover {
+    box-shadow: var(--browser-shadow-hover);
+    transform: translateY(-2px);
+}
+
+/* Welcome Page */
+.welcome-page {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, var(--browser-bg), var(--browser-surface));
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px;
+}
+
+.welcome-page h1 {
+    color: var(--browser-primary);
+    font-size: 3em;
+    margin-bottom: 20px;
+    text-shadow: 0 0 20px var(--browser-primary);
+    font-family: var(--font-main);
+    font-weight: 700;
+}
+
+.welcome-page p {
+    color: var(--browser-text-secondary);
+    font-size: 1.2em;
+    margin-bottom: 40px;
+    max-width: 600px;
+    line-height: 1.6;
+}
+
+.welcome-page .welcome-icon {
+    font-size: 4em;
+    color: var(--browser-secondary);
+    margin-bottom: 20px;
+    text-shadow: 0 0 20px var(--browser-secondary);
+}
+
+/* Bookmarks Section */
+.bookmarks-section {
+    padding: 20px;
+    background: var(--browser-surface);
+    border-top: 1px solid var(--browser-border);
+}
+
+.bookmarks-section h3 {
+    color: var(--browser-accent);
+    margin-bottom: 20px;
+    font-size: 1.3em;
+    font-family: var(--font-main);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.bookmarks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.bookmark-item {
+    background: var(--browser-surface-light);
+    border: 1.5px solid var(--browser-border);
+    padding: 16px;
+    border-radius: var(--browser-radius-small);
+    cursor: pointer;
+    transition: all var(--browser-transition);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.bookmark-item:hover {
+    border-color: var(--browser-primary);
+    box-shadow: var(--browser-shadow);
+    transform: translateY(-3px);
+    background: var(--browser-surface);
+}
+
+.bookmark-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 247, 255, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.bookmark-item:hover::before {
+    left: 100%;
+}
+
+.bookmark-icon {
+    width: 32px;
+    height: 32px;
+    margin: 0 auto 12px;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+.bookmark-name {
+    color: var(--browser-text);
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 4px;
+    font-family: var(--font-main);
+}
+
+.bookmark-url {
+    color: var(--browser-text-secondary);
+    font-size: 12px;
+    font-family: monospace;
+    word-break: break-all;
+}
+
+.bookmark-remove {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(255, 68, 68, 0.8);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: all var(--browser-transition);
+    opacity: 0;
+}
+
+.bookmark-item:hover .bookmark-remove {
+    opacity: 1;
+}
+
+.bookmark-remove:hover {
+    background: #ff4444;
+    transform: scale(1.1);
+}
+
+/* Browser Controls */
+.browser-controls {
+    display: flex;
+    gap: 12px;
+    padding: 16px 20px;
+    background: var(--browser-surface);
+    border-top: 1px solid var(--browser-border);
+    justify-content: space-between;
+    align-items: center;
+}
+
+.control-group {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.control-btn {
+    background: var(--browser-surface-light);
+    border: 1.5px solid var(--browser-border);
+    color: var(--browser-primary);
+    padding: 8px 12px;
+    border-radius: var(--browser-radius-small);
+    cursor: pointer;
+    font-family: var(--font-main);
+    font-size: 12px;
+    font-weight: 600;
+    transition: all var(--browser-transition);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.control-btn:hover {
+    background: var(--browser-primary);
+    color: var(--browser-bg);
+    border-color: var(--browser-primary);
+    box-shadow: var(--browser-shadow);
+}
+
+/* Browser Stats */
+.browser-stats {
+    display: flex;
+    gap: 16px;
+    font-size: 12px;
+    color: var(--browser-text-secondary);
+    font-family: var(--font-main);
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.stat-value {
+    color: var(--browser-primary);
+    font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .browser-toolbar {
+        flex-direction: column;
+        gap: 12px;
+        padding: 12px 16px;
+    }
+    
+    .browser-nav {
+        order: 1;
+        margin-right: 0;
+        justify-content: center;
+    }
+    
+    .address-bar-container {
+        order: 2;
+        width: 100%;
+    }
+    
+    .go-btn {
+        order: 3;
+        margin-left: 0;
+        width: 100%;
+    }
+    
+    .bookmarks-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 12px;
+    }
+    
+    .bookmark-item {
+        padding: 12px;
+    }
+    
+    .welcome-page h1 {
+        font-size: 2em;
+    }
+    
+    .welcome-page p {
+        font-size: 1em;
+    }
+    
+    .error-page h2 {
+        font-size: 2em;
+    }
+}
+
+@media (max-width: 480px) {
+    .browser-container {
+        border-radius: 0;
+    }
+    
+    .bookmarks-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .browser-controls {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .control-group {
+        justify-content: center;
+    }
+    
+    .browser-stats {
+        justify-content: center;
+    }
+}
+
+/* Scrollbar Styling */
+.browser-container ::-webkit-scrollbar {
+    width: 8px;
+}
+
+.browser-container ::-webkit-scrollbar-track {
+    background: var(--browser-surface);
+}
+
+.browser-container ::-webkit-scrollbar-thumb {
+    background: var(--browser-primary);
+    border-radius: 4px;
+}
+
+.browser-container ::-webkit-scrollbar-thumb:hover {
+    background: var(--browser-secondary);
+}
+
+/* Animation Classes */
+.fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.fade-out {
+    animation: fadeOut 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(10px); }
+}
+
+/* Focus States */
+.browser-container *:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--browser-primary), var(--browser-shadow);
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    :root {
+        --browser-border: #00f7ff;
+        --browser-text-secondary: #fff;
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+} 

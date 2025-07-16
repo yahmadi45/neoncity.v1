@@ -1,0 +1,328 @@
+/* NeoCityOS Main Application Styles */
+
+/* Login Section */
+.login-section {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Terminal Container */
+.terminal-container {
+    display: none;
+}
+
+/* Desktop Section */
+.desktop-section {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000000;
+    z-index: 100;
+}
+
+/* Taskbar */
+.taskbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: rgba(10, 10, 10, 0.95);
+    border-top: 2px solid #00f7ff;
+    display: none;
+    z-index: 200;
+    backdrop-filter: blur(10px);
+}
+
+/* Taskbar Button */
+.taskbar-btn {
+    background: none;
+    border: none;
+    color: #00f7ff;
+    cursor: pointer;
+    padding: 10px;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+}
+
+.taskbar-btn:hover {
+    background: rgba(0, 247, 255, 0.1);
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(0, 247, 255, 0.3);
+}
+
+.taskbar-btn:focus {
+    outline: 2px solid #00f7ff;
+    outline-offset: 2px;
+}
+
+.taskbar-btn img {
+    width: 30px;
+    height: 30px;
+    filter: drop-shadow(0 0 5px #00f7ff);
+}
+
+/* Loading Indicator */
+.loading-indicator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+}
+
+.loading-spinner {
+    width: 60px;
+    height: 60px;
+    border: 3px solid rgba(0, 247, 255, 0.3);
+    border-top: 3px solid #00f7ff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-indicator span {
+    color: #00f7ff;
+    font-family: 'Orbitron', monospace;
+    font-size: 16px;
+    font-weight: 700;
+    text-shadow: 0 0 10px #00f7ff;
+    letter-spacing: 2px;
+}
+
+/* Error handling is now managed by the dedicated ErrorManager system */
+/* Error styles are defined in css/errorManager.css */
+
+/* NeonJump Return Detection Styles */
+.neonjump-return .login-section {
+    display: none !important;
+    opacity: 0 !important;
+}
+
+.neonjump-return .desktop-section {
+    display: block !important;
+    opacity: 1 !important;
+}
+
+.neonjump-return .taskbar {
+    display: flex !important;
+    opacity: 1 !important;
+}
+
+/* Direct App Opening Styles */
+.direct-app .desktop-section {
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
+
+.direct-app .taskbar {
+    display: none !important;
+}
+
+/* Normal Login Flow Styles */
+.normal-login .login-section {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Loading indicator - can be shown briefly */
+#loading-indicator {
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* Force login section to be visible */
+#login-section {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* App CSS - Extracted from app.js */
+
+/* Login error styles are now managed by the ErrorManager system */
+/* See css/errorManager.css for login error styling */
+
+/* Proximity Effects */
+.proximity {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0, 247, 255, 0.6);
+    transition: all 0.3s ease;
+}
+
+/* Mobile Adjustments */
+.mobile .login-form {
+    padding: 20px;
+}
+
+.mobile .login-form input {
+    font-size: 16px; /* Prevents zoom on iOS */
+}
+
+/* Global Styles */
+body {
+    font-family: 'Rajdhani', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #0a0a0a;
+    color: #00f7ff;
+    overflow-x: hidden;
+}
+
+/* Focus States */
+input:focus, button:focus {
+    outline: 2px solid #00f7ff;
+    outline-offset: 2px;
+}
+
+/* Transition Effects */
+* {
+    transition: all 0.3s ease;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Screen Reader Only */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Input Groups */
+.input-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #00f7ff;
+    font-weight: 600;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid rgba(0, 247, 255, 0.3);
+    background: rgba(0, 0, 0, 0.5);
+    color: #00f7ff;
+    border-radius: 8px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+    border-color: #00f7ff;
+    box-shadow: 0 0 15px rgba(0, 247, 255, 0.3);
+    outline: none;
+}
+
+.input-group input[aria-invalid="true"] {
+    border-color: #ff6b6b;
+    box-shadow: 0 0 15px rgba(255, 107, 107, 0.3);
+}
+
+/* Developer Mode */
+.dev-mode {
+    border: 2px solid #ffd43b;
+}
+
+.dev-mode::before {
+    content: 'DEV MODE';
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: #ffd43b;
+    color: #000;
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: bold;
+    z-index: 9999;
+    border-radius: 4px;
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    :root {
+        --primary-color: #ffffff;
+        --secondary-color: #ff0000;
+        --success-color: #00ff00;
+        --warning-color: #ffff00;
+        --danger-color: #ff0000;
+    }
+    
+    /* Error styles are now managed by ErrorManager system */
+}
+
+/* Print Styles */
+@media print {
+    .loading-indicator,
+    .error-boundary,
+    .taskbar,
+    .data-stream,
+    .scan-effect {
+        display: none !important;
+    }
+    
+    .desktop-section {
+        background: #ffffff !important;
+        color: #000000 !important;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .loading-indicator span {
+        font-size: 14px;
+    }
+    
+    /* Error styles are now managed by ErrorManager system */
+}
+
+@media (max-width: 480px) {
+    .loading-spinner {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .loading-indicator span {
+        font-size: 12px;
+    }
+    
+    /* Error styles are now managed by ErrorManager system */
+} 

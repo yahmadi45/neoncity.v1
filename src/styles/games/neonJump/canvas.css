@@ -1,0 +1,129 @@
+/**
+ * NeonJump Canvas Styles
+ * Styling for the game canvas element
+ */
+
+/* ===== CANVAS STYLING ===== */
+#neon-canvas {
+    border: 3px solid var(--neon-green);
+    border-radius: var(--radius-lg);
+    box-shadow: 
+        inset 0 0 20px rgba(0, 255, 65, 0.3),
+        0 0 30px rgba(0, 255, 65, 0.5),
+        0 0 60px rgba(0, 255, 65, 0.2);
+    background: var(--black);
+    position: relative;
+    z-index: var(--z-game);
+    transition: var(--transition-normal);
+    cursor: crosshair;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#neon-canvas:hover {
+    box-shadow: 
+        inset 0 0 30px rgba(0, 255, 65, 0.4),
+        0 0 40px rgba(0, 255, 65, 0.7),
+        0 0 80px rgba(0, 255, 65, 0.3);
+    transform: scale(1.02);
+}
+
+#neon-canvas::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, 
+        var(--neon-green), 
+        var(--neon-blue), 
+        var(--neon-purple), 
+        var(--neon-green));
+    border-radius: calc(var(--radius-lg) + 2px);
+    z-index: -1;
+    animation: borderGlow 3s linear infinite;
+    background-size: 400% 400%;
+}
+
+@keyframes borderGlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ===== CANVAS CONTAINER ===== */
+.canvas-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: var(--spacing-md);
+}
+
+/* ===== CANVAS OVERLAY EFFECTS ===== */
+.canvas-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: calc(var(--z-game) + 1);
+}
+
+.canvas-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 1px,
+        rgba(0, 255, 65, 0.03) 1px,
+        rgba(0, 255, 65, 0.03) 2px
+    );
+    animation: scanLines 10s linear infinite;
+}
+
+@keyframes scanLines {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(100%); }
+}
+
+/* ===== CANVAS FOCUS STATES ===== */
+#neon-canvas:focus {
+    outline: none;
+    box-shadow: 
+        inset 0 0 40px rgba(0, 255, 65, 0.5),
+        0 0 50px rgba(0, 255, 65, 0.8),
+        0 0 100px rgba(0, 255, 65, 0.4);
+}
+
+/* ===== CANVAS RESPONSIVE ===== */
+@media (max-width: 768px) {
+    #neon-canvas {
+        border-width: 2px;
+        border-radius: var(--radius-md);
+    }
+    
+    .canvas-container {
+        padding: var(--spacing-sm);
+    }
+}
+
+@media (max-width: 480px) {
+    #neon-canvas {
+        border-width: 1px;
+        border-radius: var(--radius-sm);
+    }
+    
+    .canvas-container {
+        padding: var(--spacing-xs);
+    }
+} 

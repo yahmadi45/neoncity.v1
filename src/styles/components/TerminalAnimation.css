@@ -1,0 +1,195 @@
+/* Terminal Animation CSS */
+
+/* Terminal animation with dark background and green shadow */
+#terminal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    max-width: 90%;
+    height: 400px;
+    background: #000000;
+    border: 3px solid #003300;
+    border-radius: 12px;
+    box-shadow: 
+        0 0 50px #003300,
+        0 0 100px #002200,
+        0 0 150px #001100,
+        inset 0 0 20px rgba(0, 51, 0, 0.3);
+    padding: 20px;
+    font-family: 'Courier New', monospace;
+    color: #00ff00;
+    z-index: 1000;
+    display: none;
+    overflow: hidden;
+    animation: terminalPulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes terminalPulse {
+    0% {
+        box-shadow: 
+            0 0 50px #003300,
+            0 0 100px #002200,
+            0 0 150px #001100,
+            inset 0 0 20px rgba(0, 51, 0, 0.3);
+        border-color: #003300;
+    }
+    100% {
+        box-shadow: 
+            0 0 60px #004400,
+            0 0 120px #003300,
+            0 0 180px #002200,
+            inset 0 0 25px rgba(0, 68, 0, 0.4);
+        border-color: #004400;
+    }
+}
+
+/* Zone de sortie du terminal */
+#terminal-output {
+    height: 100%;
+    overflow-y: auto;
+    padding: 15px;
+    background: #000000;
+    border: none;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #00ff00;
+    text-shadow: 0 0 5px #00ff00;
+    position: relative;
+}
+
+/* Effet de scan lines */
+#terminal-output::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 255, 0, 0.03) 2px,
+        rgba(0, 255, 0, 0.03) 4px
+    );
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Lignes du terminal */
+.terminal-line {
+    margin-bottom: 10px;
+    animation: fadeIn 0.4s ease-in;
+    position: relative;
+    z-index: 2;
+    padding: 2px 0;
+    border-left: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.terminal-line:hover {
+    border-left-color: #00ff00;
+    background: rgba(0, 255, 0, 0.05);
+    padding-left: 5px;
+}
+
+.terminal-line .text {
+    color: #00ff00;
+    text-shadow: 0 0 3px #00ff00;
+}
+
+/* Enhanced blinking cursor */
+.cursor {
+    animation: blink 0.8s infinite;
+    color: #00ff00;
+    font-weight: bold;
+    text-shadow: 0 0 8px #00ff00;
+    background: rgba(0, 255, 0, 0.2);
+    padding: 0 2px;
+    border-radius: 2px;
+}
+
+/* Enhanced progress bar */
+.progress-bar {
+    height: 6px;
+    background: #001100;
+    border: 2px solid #003300;
+    width: 100%;
+    margin: 15px 0;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+.progress-bar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #00ff00, #00cc00, #00ff00);
+    animation: progress 3s forwards;
+    box-shadow: 0 0 15px #00ff00;
+    border-radius: 2px;
+}
+
+/* Enhanced animations */
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes progress {
+    0% { width: 0%; }
+    50% { width: 60%; }
+    100% { width: 100%; }
+}
+
+/* Enhanced scrollbar */
+#terminal-output::-webkit-scrollbar {
+    width: 10px;
+}
+
+#terminal-output::-webkit-scrollbar-track {
+    background: #001100;
+    border: 1px solid #003300;
+    border-radius: 5px;
+}
+
+#terminal-output::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #00ff00, #00cc00);
+    border: 1px solid #003300;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+}
+
+#terminal-output::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #00cc00, #00ff00);
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.8);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #terminal {
+        width: 95%;
+        height: 350px;
+    }
+    
+    #terminal-output {
+        font-size: 13px;
+    }
+}
