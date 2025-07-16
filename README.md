@@ -6,14 +6,7 @@ A futuristic, cyberpunk-inspired web operating system packed with educational to
 
 ## 🎬 Live Demo
 
-<div align="center">
-
-### 🖥️ Desktop Overview
-<video src="desktop-vid.mp4" controls poster="assets/icons/Start.png" width="640" style="border-radius: 12px; box-shadow: 0 0 24px #00f7ff; background: #111;">
-  Your browser does not support the video tag. <a href="desktop-vid.mp4">Download the demo video</a>.
-</video>
-
-</div>
+[▶️ Watch the desktop demo video](desktop-vid.mp4)
 
 ---
 
@@ -34,19 +27,19 @@ A futuristic, cyberpunk-inspired web operating system packed with educational to
 
 ## ⚡ Quick Navigation
 
-- [🖥️ Desktop Overview](#-live-demo)
-- [📁 File Manager](#file-manager)
-- [🛍️ Store (NeoStore)](#store-neostore)
-- [🌐 Browser (NeoBrowser)](#browser-neobrowser)
-- [🧮 Algorithm Visualizer](#algorithm-visualizer)
-- [🏗️ Data Structures Playground](#data-structures-playground)
-- [📝 Text Analyzer](#text-analyzer)
-- [🎲 Dice Game](#dice-game)
-- [🎲 Advanced Dice Game](#advanced-dice-game)
-- [🧠 Memory Game](#memory-game)
-- [🔢 Number Guesser](#number-guesser)
-- [🧩 Puzzle Solver](#puzzle-solver)
-- [🦘 Neon Jump](#neon-jump)
+- [🏠 Back to Main README](README.md) — Project overview
+- [🛒 Store](src/README_APPS_GAMES/Store.md) — Virtual marketplace
+- [📁 File Manager](src/README_APPS_GAMES/FileManager.md) — Manage files & folders
+- [🌐 Browser](src/README_APPS_GAMES/Browser.md) — Web browsing
+- [🧮 Algorithm Visualizer](src/README_APPS_GAMES/AlgorithmVisualizer.md) — Learn algorithms
+- [🧱 Data Structures](src/README_APPS_GAMES/DataStructures.md) — Explore data structures
+- [📝 Text Analyzer](src/README_APPS_GAMES/TextAnalyzer.md) — Analyze text
+- [🎲 Dice Game](src/README_APPS_GAMES/DiceGame.md) — Classic dice game
+- [🎲 Advanced Dice](src/README_APPS_GAMES/AdvancedDice.md) — Advanced dice rules
+- [🧠 Memory Game](src/README_APPS_GAMES/MemoryGame.md) — Memory challenge
+- [🔢 Number Guesser](src/README_APPS_GAMES/NumberGuesser.md) — Guess the number
+- [🧩 Puzzle Solver](src/README_APPS_GAMES/PuzzleSolver.md) — Logic puzzles
+- [🚀 Neon Jump](src/README_APPS_GAMES/NeonJump.md) — Platformer game
 
 ---
 
