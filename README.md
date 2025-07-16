@@ -4,7 +4,7 @@ A futuristic, cyberpunk-inspired web operating system packed with educational to
 
 <p align="center">
   <a href="https://yahmadi45.github.io/neoncity.v1/">
-    <img src="https://img.shields.io/badge/Open%20NeoCityOS-%23a020f0?style=for-the-badge&labelColor=000000&color=000000" alt="Open NeoCityOS" />
+    <img src="https://img.shields.io/badge/Enter%20NeoCityOS-%23a020f0?style=for-the-badge&labelColor=000000&color=000000" alt="Open  NeoCityOS" />
   </a>
 </p>
 
