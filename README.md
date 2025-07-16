@@ -26,8 +26,6 @@ A futuristic, cyberpunk-inspired web operating system packed with educational to
 ---
 
 ## ⚡ Quick Navigation
-
-- [🏠 Back to Main README](README.md) — Project overview
 - [🛒 Store](src/README_APPS_GAMES/Store.md) — Virtual marketplace
 - [📁 File Manager](src/README_APPS_GAMES/FileManager.md) — Manage files & folders
 - [🌐 Browser](src/README_APPS_GAMES/Browser.md) — Web browsing
