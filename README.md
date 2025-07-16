@@ -151,17 +151,6 @@ We welcome contributions from the community! To get started:
 Please review the [CONTRIBUTING guidelines](CONTRIBUTING.md) if available.
 
 ---
-
-## 📞 Contact & Support
-
-For questions, suggestions, or support, please open an issue or contact the maintainer at [your-email@example.com].
-
----
-
-## 📄 License
-
-MIT License. See [LICENSE](LICENSE) for details.
-
 ---
 
 <div align="center">
