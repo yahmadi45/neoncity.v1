@@ -2,7 +2,11 @@
 
 A futuristic, cyberpunk-inspired web operating system packed with educational tools, games, and productivity apps—all running in your browser.
 
-[![Enter NeoCityOS](https://img.shields.io/badge/🚀%20Enter%20NeoCityOS-00f7ff?style=for-the-badge&logo=github)](https://yahmadi45.github.io/neoncity.v1/)
+<p align="center">
+  <a href="https://yahmadi45.github.io/neoncity.v1/">
+    <img src="https://img.shields.io/badge/Enter%20NeoCityOS-%23a020f0?style=for-the-badge&labelColor=000000&color=000000" alt="Enter NeoCityOS" />
+  </a>
+</p>
 
 ---
 
