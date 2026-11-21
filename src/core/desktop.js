@@ -40,6 +40,7 @@ function setCurrentUser(username) {
         // Save user to localStorage for session persistence
         if (username) {
             localStorage.setItem('currentUser', username);
+            localStorage.setItem('neo_last_user', username);
             console.log('Current user set to:', username);
         }
         
@@ -191,17 +192,16 @@ function initializeDesktop() {
  */
 function updateSystemTime() {
     try {
-        // Update time display if taskbar is available
         if (typeof appManager !== 'undefined' && appManager.updateTaskbar) {
             appManager.updateTaskbar();
         }
-        
-        // Schedule next update in 1 second
-        setTimeout(updateSystemTime, 1000);
-        
     } catch (error) {
         console.error('Error updating system time:', error);
     }
+}
+
+if (!window.__neocityTimeInterval) {
+    window.__neocityTimeInterval = window.setInterval(updateSystemTime, 1000);
 }
 
 /**

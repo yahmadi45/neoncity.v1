@@ -561,25 +561,33 @@ class AppManager {
     updateTaskbar() {
         const taskbar = document.getElementById('taskbar');
         if (!taskbar) return;
-        
+
+        if (taskbar.dataset.initialized !== 'true') {
+            taskbar.innerHTML = `
+                <button class="taskbar-btn" onclick="showStartMenu()">
+                    <img src="assets/icons/Start.png" alt="Start">
+                </button>
+                <div class="user-info">
+                    <span class="username"></span>
+                    <span class="time"></span>
+                </div>
+                <div></div>
+            `;
+            taskbar.dataset.initialized = 'true';
+        }
+
         // Update time
         const now = new Date();
-        const timeString = now.toLocaleTimeString('fr-FR', { 
-            hour: '2-digit', 
-            minute: '2-digit' 
+        const timeString = now.toLocaleTimeString(undefined, {
+            hour: '2-digit',
+            minute: '2-digit'
         });
-        
-        // Clear taskbar and rebuild structure
-        taskbar.innerHTML = `
-            <button class="taskbar-btn" onclick="showStartMenu()">
-                <img src="assets/icons/start.png" alt="Start">
-            </button>
-            <div class="user-info">
-                <span class="username">${currentUser || 'Guest'}</span>
-                <span class="time">${timeString}</span>
-            </div>
-            <div></div>
-        `;
+        const username = taskbar.querySelector('.username');
+        const time = taskbar.querySelector('.time');
+        if (username) username.textContent = typeof getCurrentUser === 'function'
+            ? (getCurrentUser() || 'Guest')
+            : (typeof currentUser !== 'undefined' && currentUser ? currentUser : 'Guest');
+        if (time) time.textContent = timeString;
     }
 
     /**
