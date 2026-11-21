@@ -102,6 +102,9 @@ class AppManager {
             case 'store':
                 this.showStore();
                 break;
+            case 'devops':
+                this.showDevOpsDashboard();
+                break;
 
             case 'algorithm':
                 this.showAlgorithmVisualizer();
@@ -388,6 +391,12 @@ class AppManager {
      * Launches the Neon Jump platformer game with fire-themed design.
      * The game features multiple difficulty levels and animations.
      */
+    showDevOpsDashboard() {
+        this.hideAllApps();
+        this.createAppWindow('devops-app', 'DevOps Control Room', '<div id="devops-dashboard"></div>');
+        this.renderDesktopIcons();
+        if (window.devOpsDashboard) window.devOpsDashboard.render();
+    }
     showNeonJump() {
         console.log('Opening Neon Jump - NeoCityOS Edition...');
         this.hideAllApps();

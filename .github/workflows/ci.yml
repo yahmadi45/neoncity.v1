@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-smoke-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Build container image
+        run: docker build --tag neoncity:ci .
+
+      - name: Start site
+        run: docker run --detach --rm --name neoncity-ci --publish 8080:8080 neoncity:ci
+
+      - name: Smoke-test site and health endpoint
+        shell: bash
+        run: |
+          for attempt in {1..20}; do
+            if curl --fail --silent http://127.0.0.1:8080/health >/dev/null; then
+              break
+            fi
+            sleep 2
+          done
+          curl --fail --silent http://127.0.0.1:8080/health | grep -Fx 'ok'
+          curl --fail --silent http://127.0.0.1:8080/ | grep -q '<html'
+          curl --fail --silent http://127.0.0.1:8080/landing.html | grep -q 'Welcome to NeoCityOS'
+          curl --fail --silent http://127.0.0.1:8080/src/apps/devopsDashboard.js | grep -q 'DevOps Control Room'
+          curl --fail --silent http://127.0.0.1:8080/src/styles/apps/devopsDashboard.css | grep -q 'devops-metrics'
+
+      - name: Stop site
+        if: always()
+        run: docker stop neoncity-ci || true
