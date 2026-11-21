@@ -16,6 +16,16 @@ jobs:
       - name: Check out source
         uses: actions/checkout@v4
 
+      - name: Check JavaScript syntax
+        shell: bash
+        run: |
+          node --check src/apps/devopsDashboard.js
+          node --check src/core/appConfig.js
+          node --check src/core/appManager.js
+
+      - name: Validate Docker Compose configuration
+        run: docker compose config --quiet
+
       - name: Build container image
         run: docker build --tag neoncity:ci .
 

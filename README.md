@@ -125,6 +125,31 @@ To make it operate against real infrastructure, add a backend or trusted serverl
 - [Puzzle Solver](src/README_APPS_GAMES/PuzzleSolver.md)
 - [Neon Jump](src/README_APPS_GAMES/NeonJump.md)
 
+## Workspace, branches, and pull requests
+
+Keep the original `main` worktree clean. Start each task in a separate worktree and a small, focused branch; the helper fetches the latest `origin/main` and skips large Git LFS video downloads:
+
+```powershell
+.\scripts\new-workspace.ps1 -Branch feature/my-change
+# or: .\scripts\new-workspace.ps1 -Branch fix/my-bug
+```
+
+The helper creates a sibling worktree under `neoncity-worktrees/` (or use `-Path` to choose a location). Make and test the change there, then commit and push only that feature branch:
+
+```powershell
+Set-Location ..\neoncity-worktrees\feature-my-change
+node --check src\apps\devopsDashboard.js
+docker compose config --quiet
+docker build -t neoncity:check .
+git add <changed-files>
+git commit -m "Describe the focused change"
+git push -u origin feature/my-change
+```
+
+Open a pull request from the feature branch to `main` and merge it after review and CI pass. **Do not push directly to `main` unless explicitly requested.** Keep each PR focused; do not include unrelated working-tree deletions or changes. GitHub Actions validates JavaScript syntax, Compose configuration, builds the image, and smoke-tests served endpoints.
+
+When the PR is merged, refresh the original clean worktree using `git pull --ff-only origin main`. If the original worktree contains local changes, leave it untouched and refresh a separate clean worktree instead.
+
 ## Repository layout
 
 ```text
@@ -134,6 +159,7 @@ src/core/                        Desktop state, routing, app configuration
 src/apps/                        Browser apps and DevOps dashboard
 src/games/                       Browser games
 src/styles/                      Desktop, app, component, and game styles
+scripts/new-workspace.ps1         Safe feature branch and worktree helper
 src/README_APPS_GAMES/           Guides for individual apps and games
 assets/                          App icons, screenshots, and sound assets
 Dockerfile                       Static Nginx image
