@@ -42,6 +42,7 @@ const APP_CONFIG = {
      * 5. Interactive Apps (Memory Game, Puzzle Solver, etc.)
      */
     desktop: [
+        { name: 'DevOps', icon: 'assets/icons/terminal.png', location: 'devops', description: 'DevOps Control Room' },
         // Core System Applications
         { name: "Files", icon: "assets/icons/files.png", location: "filemanager", description: "File Manager" },
         { name: "Terminal", icon: "assets/icons/terminal.png", location: "terminal", description: "System Terminal" },
@@ -75,6 +76,9 @@ const APP_CONFIG = {
      * Note: Not all educational apps have navigation entries as they may
      * use different navigation patterns or be launched differently.
      */
+    devops: [
+        { name: 'Back to Desktop', icon: 'assets/icons/terminal.png', location: 'desktop', description: 'Back to Desktop' }
+    ],
     filemanager: [
         { name: "Back to Desktop", icon: "assets/icons/files.png", location: "desktop", description: "Back to Desktop" }
     ],
