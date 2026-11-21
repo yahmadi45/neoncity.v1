@@ -384,7 +384,9 @@ class NeoStore {
      */
     getUserGold() {
         const username = this.getCurrentUsername();
-        const users = JSON.parse(localStorage.getItem('neo_users')) || {};
+        const users = typeof getStoredUsers === 'function'
+            ? getStoredUsers()
+            : {};
         const userData = users[username] || {};
         let gold = typeof userData.gold === 'number' ? userData.gold : 1000;
         
@@ -412,7 +414,9 @@ class NeoStore {
      */
     saveUserGold(gold) {
         const username = this.getCurrentUsername();
-        const users = JSON.parse(localStorage.getItem('neo_users')) || {};
+        const users = typeof getStoredUsers === 'function'
+            ? getStoredUsers()
+            : {};
         if (!users[username]) users[username] = {};
         users[username].gold = gold;
         localStorage.setItem('neo_users', JSON.stringify(users));
@@ -432,7 +436,9 @@ class NeoStore {
      */
     getUserInventory() {
         const username = this.getCurrentUsername();
-        const users = JSON.parse(localStorage.getItem('neo_users')) || {};
+        const users = typeof getStoredUsers === 'function'
+            ? getStoredUsers()
+            : {};
         const userData = users[username] || {};
         return Array.isArray(userData.inventory) ? userData.inventory : [];
     }
@@ -446,7 +452,9 @@ class NeoStore {
      */
     saveUserInventory(inventory) {
         const username = this.getCurrentUsername();
-        const users = JSON.parse(localStorage.getItem('neo_users')) || {};
+        const users = typeof getStoredUsers === 'function'
+            ? getStoredUsers()
+            : {};
         if (!users[username]) users[username] = {};
         users[username].inventory = inventory;
         localStorage.setItem('neo_users', JSON.stringify(users));
@@ -1040,7 +1048,9 @@ class NeoStore {
      */
     autoFixGold() {
         const username = this.getCurrentUsername();
-        const users = JSON.parse(localStorage.getItem('neo_users')) || {};
+        const users = typeof getStoredUsers === 'function'
+            ? getStoredUsers()
+            : {};
         
         if (!users[username]) users[username] = {};
         

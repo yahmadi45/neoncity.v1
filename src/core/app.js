@@ -159,12 +159,27 @@ function initializeLoginForm() {
                 throw new Error('createNewUser function not found');
             }
 
-            // Attempt to verify existing user credentials
+            // Verify existing users without overwriting an account on a bad password.
             let userData = verifyUserCredentials(username, password);
 
-            // Auto-registration system: create new user if credentials don't exist
+            if (!userData && typeof userExists === 'function' && userExists(username)) {
+                showLoginError("Incorrect password");
+                submitButton.textContent = 'CONNECT';
+                submitButton.disabled = false;
+                passwordInput.focus();
+                passwordInput.select();
+                return;
+            }
+
+            // Auto-registration system: create a new user only when the username is unused.
             if (!userData) {
                 userData = createNewUser(username, password);
+                if (!userData) {
+                    showLoginError("That username is already in use");
+                    submitButton.textContent = 'CONNECT';
+                    submitButton.disabled = false;
+                    return;
+                }
                 console.log("New user created:", username);
             }
 
@@ -730,73 +745,6 @@ function addProximityEffect(selector, radius = 120) {
     }
 }
 
-// Brief loading animation then show login (only if not coming from NeonJump)
-(function() {
-    const loadingIndicator = document.getElementById('loading-indicator');
-    const loginSection = document.getElementById('login-section');
-    
-    // Check if we're coming from NeonJump
-    const urlParams = new URLSearchParams(window.location.search);
-    const showDesktop = urlParams.get('show');
-    const fromNeonJump = urlParams.get('from');
-    const returnToDesktop = sessionStorage.getItem('returnToDesktop');
-    const fromNeonJumpStorage = sessionStorage.getItem('fromNeonJump');
-    
-    // If coming from NeonJump, don't run the loading animation
-    if (showDesktop === 'desktop' || returnToDesktop === 'true' || fromNeonJump === 'neonjump' || fromNeonJumpStorage === 'true') {
-        console.log('Coming from NeonJump - skipping loading animation');
-        return;
-    }
-    
-    // Ensure loading is visible initially
-    if (loadingIndicator) {
-        loadingIndicator.style.display = 'flex';
-        loadingIndicator.hidden = false;
-        loadingIndicator.style.opacity = '1';
-        loadingIndicator.style.visibility = 'visible';
-        console.log('Loading indicator shown briefly');
-    }
-    
-    // Hide login initially
-    if (loginSection) {
-        loginSection.style.display = 'none';
-        loginSection.style.opacity = '0';
-        loginSection.style.visibility = 'hidden';
-    }
-    
-    // After 2 seconds, hide loading and show login with fade effect
-    setTimeout(() => {
-        if (loadingIndicator) {
-            loadingIndicator.style.opacity = '0';
-            loadingIndicator.style.transition = 'opacity 0.5s ease';
-            console.log('Loading indicator fading out');
-        }
-        
-        if (loginSection) {
-            loginSection.style.display = 'block';
-            loginSection.style.visibility = 'visible';
-            loginSection.style.transition = 'opacity 0.5s ease';
-            
-            // Small delay to start fade in
-            setTimeout(() => {
-                loginSection.style.opacity = '1';
-                console.log('Login form fading in');
-            }, 100);
-        }
-        
-        document.body.classList.add('normal-login');
-        
-        // Hide loading completely after fade
-        setTimeout(() => {
-            if (loadingIndicator) {
-                loadingIndicator.style.display = 'none';
-                loadingIndicator.hidden = true;
-                console.log('Loading indicator completely hidden');
-            }
-        }, 500);
-    }, 2000); // 2 seconds
-})();
-
 // Initialize the application when DOM is loaded
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initializeApp);
@@ -831,54 +779,6 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('DOM ready: Login form made visible immediately');
     }
 });
-
-// Multiple safety timeouts to ensure loading indicator is hidden
-setTimeout(() => {
-    const loadingIndicator = document.getElementById('loading-indicator');
-    if (loadingIndicator && !loadingIndicator.hidden) {
-        console.warn('Loading indicator timeout (2s) - forcing hide');
-        loadingIndicator.hidden = true;
-        document.body.classList.add('normal-login');
-        
-        const loginSection = document.getElementById('login-section');
-        if (loginSection) {
-            loginSection.style.display = 'block';
-            loginSection.style.opacity = '1';
-        }
-    }
-}, 2000); // 2 second timeout
-
-setTimeout(() => {
-    const loadingIndicator = document.getElementById('loading-indicator');
-    if (loadingIndicator && !loadingIndicator.hidden) {
-        console.warn('Loading indicator timeout (5s) - forcing hide');
-        loadingIndicator.hidden = true;
-        document.body.classList.add('normal-login');
-        
-        const loginSection = document.getElementById('login-section');
-        if (loginSection) {
-            loginSection.style.display = 'block';
-            loginSection.style.opacity = '1';
-        }
-    }
-}, 5000); // 5 second timeout
-
-// Ultimate fallback - ensure login is visible after 8 seconds
-setTimeout(() => {
-    console.log('Ultimate fallback: Ensuring login form is visible');
-    document.body.classList.add('normal-login');
-    
-    const loadingIndicator = document.getElementById('loading-indicator');
-    if (loadingIndicator) {
-        loadingIndicator.hidden = true;
-    }
-    
-    const loginSection = document.getElementById('login-section');
-    if (loginSection) {
-        loginSection.style.display = 'block';
-        loginSection.style.opacity = '1';
-    }
-}, 8000); // 8 second timeout
 
 // Fallback mechanism for missing dependencies
 window.addEventListener('load', function() {
