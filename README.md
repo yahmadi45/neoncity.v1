@@ -1,162 +1,152 @@
-# 🏙️ NeoCityOS
+# NeoCityOS
 
-A futuristic, cyberpunk-inspired web operating system packed with educational tools, games, and productivity apps—all running in your browser. Experience a seamless, modular, and visually stunning desktop environment designed for learning, productivity, and fun.
+NeoCityOS is a cyberpunk-inspired, browser-based desktop environment built with HTML, CSS, and vanilla JavaScript. It brings educational tools, games, productivity utilities, and a DevOps demo dashboard together in one static web application.
 
 <p align="center">
   <a href="https://yahmadi45.github.io/neoncity.v1/">
-    <img src="https://img.shields.io/badge/Open%20NeoCityOS-%23a020f0?style=for-the-badge&labelColor=000000&color=000000" alt="Open NeoCityOS" />
+    <img src="https://img.shields.io/badge/Open%20NeoCityOS-%2300d9e8?style=for-the-badge&labelColor=101522&color=00d9e8" alt="Open NeoCityOS" />
   </a>
 </p>
 
----
+## Project status
 
-## 🎬 Live Demo
+The app runs as a static website, directly in a browser or in an Nginx Docker container. The repository includes a Dockerfile, Docker Compose setup, a health endpoint, and a GitHub Actions workflow that builds the image and smoke-tests the site. The DevOps Control Room is a frontend demo: pipeline runs, service metrics, deployment actions, and event logs are local sample data, not connected to GitHub Actions or production infrastructure. No deployment to a public server is performed by this repository's CI workflow.
 
-[▶️ Watch the desktop demo video](desktop-vid.mp4)
+## Evolution milestones
 
----
+This project began as a functioning web application, not an empty repository. The repository history starts on July 16, 2025; its initial application upload already contained the desktop UI, apps, games, assets, and user documentation. The DevOps setup was added later, with the dashboard and container workflow merged into `main` in November 2026. These are commit milestones, not release tags.
 
-## 🚀 Quick Start
+| Stage | Commit | What changed |
+| --- | --- | --- |
+| **1. First application upload** | [`31151cd`](https://github.com/yahmadi45/neoncity.v1/commit/31151cdab7dd00458466f9589bb250e5764de7e9) | Added the working NeoCityOS site, its apps and games, media, and app guides. |
+| **2. Earlier README and demo updates** | [`4608997`](https://github.com/yahmadi45/neoncity.v1/commit/4608997) | Improved the project overview and links to its existing browser demos. |
+| **3. Landing page** | [`1782b00`](https://github.com/yahmadi45/neoncity.v1/commit/1782b00) | Added a separate welcome page with project features, media, and navigation to the desktop. |
+| **4. Current project README baseline** | [`d24e0af`](https://github.com/yahmadi45/neoncity.v1/commit/d24e0afa7e42c2748c7ff7c4612061c910db0604) | Updated the existing project introduction and feature overview. |
+| **5. Container and CI** | [`136abd6`](https://github.com/yahmadi45/neoncity.v1/commit/136abd61cf72de2cd4ab421ae5d77b910b3b81ff) | Added an Nginx Docker image, Compose service, health check, and GitHub Actions build and smoke tests. |
+| **6. DevOps dashboard merged** | [`9b3514f`](https://github.com/yahmadi45/neoncity.v1/commit/9b3514f0a02dc814cc64cae650d789ddc108107e) | Merged the dashboard, application registration, styles, and container CI into `main`. |
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/yahmadi45/neoncity.v1.git
-   cd neoncity.v1
-   ```
-2. **Open in your browser:**
-   - Open `index.html` in any modern web browser (no server needed)
-3. **Login and explore:**
-   - Username: Any 3-20 characters
-   - Password: Any 6+ characters
+## Features
 
----
+- Cyberpunk desktop with login, taskbar, animated interface, and app windows.
+- Education tools for algorithms, data structures, and text analysis.
+- Games including dice, memory, number guessing, puzzle solving, and Neon Jump.
+- Browser-like app, file manager, store, local settings, and user state.
+- DevOps Control Room with sample pipeline statuses, service-health cards, a response-time chart, and activity log.
+- Interactive demo pipeline reruns and deployment button; these update sample data in the browser only.
+- Static Nginx container with a health endpoint, Compose configuration, and CI smoke tests.
 
-## ✨ Key Features
-- **Cyberpunk-inspired, neon-glow UI** with responsive design and accessibility-first approach
-- **Modular, event-driven architecture** for easy extension and maintenance
-- **Rich suite of educational tools**: algorithm visualizer, data structures playground, text analyzer, and more
-- **Engaging games**: platformers, puzzles, memory challenges, and advanced dice games
-- **Productivity apps**: file manager, browser, and virtual store
-- **Persistent user data**: local storage for settings, progress, and inventory
-- **Smooth animations, sound effects, and interactive feedback**
+## Architecture
 
----
+```text
+Browser
+  └── Static HTML / CSS / JavaScript
+        ├── NeoCityOS desktop and browser-based apps
+        ├── LocalStorage for demo state
+        └── DevOps Control Room (sample data)
 
-## 🛠️ Technology Stack
-- **Frontend:** HTML5, CSS3 (custom cyberpunk styles), JavaScript (ES6+)
-- **Architecture:** Modular, event-driven, single-page application (SPA)
-- **Persistence:** LocalStorage for user data and settings
-- **Media:** Custom icons, sound effects, and demo videos
-- **No backend required** — runs entirely in your browser!
+Docker Compose
+  └── Nginx :8080 in container → host :8081 by default
 
----
+GitHub Actions
+  └── Build image → start container → smoke-test health, pages, dashboard assets
+```
 
-## ⚡ Quick Navigation
-- [🛒 Store](src/README_APPS_GAMES/Store.md) — Virtual marketplace with cyberpunk items, inventory, and gold-based currency
-- [📁 File Manager](src/README_APPS_GAMES/FileManager.md) — Advanced file/folder management with drag-and-drop, previews, and keyboard shortcuts
-- [🌐 Browser](src/README_APPS_GAMES/Browser.md) — Secure, modern web browsing with bookmarks, history, and search suggestions
-- [🧮 Algorithm Visualizer](src/README_APPS_GAMES/AlgorithmVisualizer.md) — Step-by-step visualization of classic algorithms with code explanations
-- [🧱 Data Structures](src/README_APPS_GAMES/DataStructures.md) — Interactive playground for stacks, queues, trees, and more
-- [📝 Text Analyzer](src/README_APPS_GAMES/TextAnalyzer.md) — Comprehensive text analysis, transformation, and export tools
-- [🎲 Dice Game](src/README_APPS_GAMES/DiceGame.md) — Classic dice rolling with customizable rules and scoring
-- [🎲 Advanced Dice](src/README_APPS_GAMES/AdvancedDice.md) — Multiple dice types, custom rules, achievements, and analytics
-- [🧠 Memory Game](src/README_APPS_GAMES/MemoryGame.md) — Card-matching challenge with difficulty levels and score tracking
-- [🔢 Number Guesser](src/README_APPS_GAMES/NumberGuesser.md) — Guess-the-number game with real-time hints and stats
-- [🧩 Puzzle Solver](src/README_APPS_GAMES/PuzzleSolver.md) — Sudoku, sliding puzzles, and more with hints and solutions
-- [🚀 Neon Jump](src/README_APPS_GAMES/NeonJump.md) — Procedural platformer with power-ups, advanced physics, and checkpoints
+There is no application API or database. Accounts are a client-side experience, and dashboard activity is simulated; neither provides server-side authentication, remote pipeline access, or real deployments.
 
----
+## Run with Docker
 
-## 📚 Apps & Games Overview
+Requirements: Docker Desktop or Docker Engine with the Compose plugin.
 
-### 📁 File Manager
-- Browse, create, rename, and delete files/folders in a neon-glow interface
-- Drag-and-drop organization, context menus, file previews, and keyboard shortcuts
-- Smooth transitions and accessibility support
+From the repository root:
 
-### 🛍️ Store (NeoStore)
-- Virtual marketplace with 30+ unique cyberpunk items
-- Category filtering, rarity system, persistent cart, and inventory
-- Gold-based currency, animated neon UI, and immersive sound effects
+```powershell
+docker compose up --pull always -d
+```
 
-### 🌐 Browser (NeoBrowser)
-- Modern web navigation with sandboxed iframe for security
-- Bookmarks, history, search suggestions, and keyboard shortcuts
-- Neon-glow UI and smooth user experience
+- NeoCityOS: <http://localhost:8081>
+- Health check: <http://localhost:8081/health>
+- Open the DevOps icon on the desktop to view the control room.
 
-### 🧮 Algorithm Visualizer
-- Visualize sorting, searching, and graph algorithms (Bubble/Quick/Merge Sort, DFS/BFS, etc.)
-- Step-by-step animations, code explanations, and adjustable speed/size
-- Educational overlays and interactive controls
+The host port is configurable in `docker-compose.yml`; the container listens on port `8080`. Stop the app without deleting image data:
 
-### 🏗️ Data Structures Playground
-- Visualize and interact with stacks, queues, linked lists, trees, and hash tables
-- Animated operations, performance metrics, and educational panels
-- Hands-on learning with real-time feedback
+```powershell
+docker compose down
+```
 
-### 📝 Text Analyzer
-- Word/character count, frequency analysis, readability metrics
-- Text transformation tools, palindrome/anagram detection, and export options
-- Clean, accessible interface for productivity
+Build and run without Compose:
 
-### 🎲 Dice Game
-- Roll one or more dice with animated rolls and sound effects
-- Score tracking, customizable rules, and neon-glow UI
-- Simple, fun, and replayable
+```powershell
+docker build -t neoncity:local .
+docker run --rm -p 8081:8080 neoncity:local
+```
 
-### 🎲 Advanced Dice Game
-- Multiple dice types (d4, d6, d8, d20, etc.), custom rules, and achievements
-- Scoreboard, roll history, animated dice, and frequency charts
-- Designed for tabletop RPG fans and advanced users
+## Run without Docker
 
-### 🧠 Memory Game
-- Card-matching with multiple difficulty levels, animated flips, and sound effects
-- Score and best time tracking, neon-glow UI, and accessibility features
+Open `index.html` in a modern browser, or serve the repository root with a local static-file server. For the full desktop interaction, sign in using the client-side demo login. There is no backend to install.
 
-### 🔢 Number Guesser
-- Guess the number with real-time hints, score/attempt tracking, and efficiency stats
-- Neon-glow UI, animated feedback, and sound effects
-- Great for quick brain teasers
+## CI and checks
 
-### 🧩 Puzzle Solver
-- Sudoku, 8-puzzle, crossword, sliding puzzle with hints and solutions
-- Score/progress tracking, animated feedback, and sound effects
-- Challenging and educational
+`.github/workflows/ci.yml` runs for pushes to `main` and pull requests targeting `main`. It builds the Docker image, starts Nginx, and checks the health endpoint, home page, landing page, DevOps JavaScript, and DevOps stylesheet. The workflow does not publish an image or deploy to a server.
 
-### 🦘 Neon Jump
-- Cyberpunk platformer with procedural levels, power-ups, and advanced physics
-- Neon-glow graphics, sound effects, score/health/checkpoint tracking
-- Fast-paced, addictive gameplay
+Run the matching local checks from the repository root:
 
----
+```powershell
+node --check src/apps/devopsDashboard.js
+node --check src/core/appManager.js
+node --check src/core/appConfig.js
+docker compose config --quiet
+docker build -t neoncity:ci .
+```
 
-## 🎨 Cyberpunk Aesthetics & Features
-- Neon color scheme, glowing effects, glitch animations
-- Modular, event-driven architecture
-- Responsive design for desktop and mobile
-- Accessibility-first: keyboard navigation, screen reader support
+## DevOps dashboard scope
 
----
+The DevOps Control Room currently demonstrates a dashboard layout and client-side interactions:
 
-## 🤝 Contributing
+- Pipeline rows and their starting statuses are sample data, saved locally in browser storage after interaction.
+- Rerunning a pipeline simulates a result after a short delay; it does not start a GitHub Actions run.
+- Service uptime and response-time values are illustrations, not monitored measurements.
+- Deploy release records a demo event only; it does not deploy the website.
 
-We welcome contributions from the community! To get started:
+To make it operate against real infrastructure, add a backend or trusted serverless API, authenticate users, connect provider APIs using server-side secrets, and return real pipeline, monitoring, and deployment data. Never put access tokens in browser JavaScript or commit secrets to the repository.
 
-1. **Fork** the repository
-2. **Create** a feature branch (`git checkout -b feature/amazing-feature`)
-3. **Commit** your changes (`git commit -m 'Add amazing feature'`)
-4. **Push** to the branch (`git push origin feature/amazing-feature`)
-5. **Open** a Pull Request with a clear description and screenshots if applicable
+## Application guides
 
-Please review the [CONTRIBUTING guidelines](CONTRIBUTING.md) if available.
+- [DevOps Control Room](#devops-dashboard-scope)
+- [Store / NeoStore](src/README_APPS_GAMES/Store.md)
+- [File Manager](src/README_APPS_GAMES/FileManager.md)
+- [Browser](src/README_APPS_GAMES/Browser.md)
+- [Algorithm Visualizer](src/README_APPS_GAMES/AlgorithmVisualizer.md)
+- [Data Structures](src/README_APPS_GAMES/DataStructures.md)
+- [Text Analyzer](src/README_APPS_GAMES/TextAnalyzer.md)
+- [Dice Game](src/README_APPS_GAMES/DiceGame.md)
+- [Advanced Dice](src/README_APPS_GAMES/AdvancedDice.md)
+- [Memory Game](src/README_APPS_GAMES/MemoryGame.md)
+- [Number Guesser](src/README_APPS_GAMES/NumberGuesser.md)
+- [Puzzle Solver](src/README_APPS_GAMES/PuzzleSolver.md)
+- [Neon Jump](src/README_APPS_GAMES/NeonJump.md)
 
----
----
+## Repository layout
 
-<div align="center">
+```text
+index.html                       NeoCityOS entry point
+landing.html                     Welcome and project overview page
+src/core/                        Desktop state, routing, app configuration
+src/apps/                        Browser apps and DevOps dashboard
+src/games/                       Browser games
+src/styles/                      Desktop, app, component, and game styles
+src/README_APPS_GAMES/           Guides for individual apps and games
+assets/                          App icons, screenshots, and sound assets
+Dockerfile                       Static Nginx image
+nginx.conf                       Nginx site configuration and health route
+docker-compose.yml               Local container setup; host port 8081
+.github/workflows/ci.yml          Build and smoke-test workflow
+```
 
-**⭐ Star this repository if you find it helpful!**
+## Security and deployment notes
 
-*Built with ❤️ and neon lights*
-
-</div> 
+- The login is a browser-side demo, not a security boundary or identity system.
+- The dashboard has no backend integrations. Never treat its sample health, build, or deployment states as live production status.
+- Nginx sets basic response headers; configure TLS, domain routing, access controls, and any security policy appropriate to your real deployment environment.
+- GitHub Actions CI verifies a container build and local HTTP responses; it does not publish images or deploy a public site.
+- This Compose service is a simple single-container static-site setup, not a multi-node production cluster.
+- Do not bake secrets into the image or commit credentials, API keys, or tokens.
