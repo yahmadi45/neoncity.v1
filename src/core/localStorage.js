@@ -51,15 +51,23 @@
  * @param {string} password - The password to verify
  * @returns {Object|null} - User object if credentials are valid, null otherwise
  */
+function getStoredUsers() {
+  try {
+    const parsed = JSON.parse(localStorage.getItem("neo_users") || "{}");
+    return parsed && typeof parsed === "object" && !Array.isArray(parsed) ? parsed : {};
+  } catch (_) {
+    localStorage.removeItem("neo_users");
+    return {};
+  }
+}
+
 function verifyUserCredentials(username, password) {
-  // Retrieve users object from localStorage, default to empty object if not found
-  const users = JSON.parse(localStorage.getItem("neo_users")) || {};
-  
-  // Get user object for the provided username
-  const user = users[username];
-  
-  // Return user object if username exists and password matches, null otherwise
+  const user = getStoredUsers()[username];
   return user && user.password === password ? user : null;
+}
+
+function userExists(username) {
+  return Boolean(getStoredUsers()[username]);
 }
 
 /**
@@ -89,21 +97,19 @@ function verifyUserCredentials(username, password) {
  * @returns {Object} - The newly created user object
  */
 function createNewUser(username, password) {
-  // Retrieve existing users object from localStorage
-  const users = JSON.parse(localStorage.getItem("neo_users")) || {};
-  
-  // Create new user object with default values
+  const users = getStoredUsers();
+  if (users[username]) {
+    return null;
+  }
+
   users[username] = {
-    password,           // Store password (should be hashed in production)
-    xp: 0,             // Initialize experience points to 0
-    gold: 0,           // Initialize gold currency to 0
-    inventory: []      // Initialize empty inventory array
+    password,
+    xp: 0,
+    gold: 100,
+    inventory: []
   };
-  
-  // Save updated users object back to localStorage
+
   localStorage.setItem("neo_users", JSON.stringify(users));
-  
-  // Return the newly created user object
   return users[username];
 }
 
@@ -134,6 +140,5 @@ function createNewUser(username, password) {
  * @returns {Object} - Object containing all user data
  */
 function getAllUsers() {
-  // Retrieve and return users object from localStorage, default to empty object
-  return JSON.parse(localStorage.getItem("neo_users")) || {};
+  return getStoredUsers();
 }
