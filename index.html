@@ -178,6 +178,30 @@
     window.clearDataStructure = () => window.dataStructures && window.dataStructures.clear();
     window.searchDataStructure = () => window.dataStructures && window.dataStructures.search();
   </script>
+  <script>
+    // Startup watchdog: never leave a normal page blocked on the initialization overlay.
+    window.setTimeout(function () {
+      var loading = document.getElementById('loading-indicator');
+      var login = document.getElementById('login-section');
+      var params = new URLSearchParams(window.location.search);
+      var returningFromNeonJump =
+        params.get('show') === 'desktop' ||
+        params.get('from') === 'neonjump' ||
+        sessionStorage.getItem('returnToDesktop') === 'true' ||
+        sessionStorage.getItem('fromNeonJump') === 'true';
+
+      if (loading && !returningFromNeonJump) {
+        loading.hidden = true;
+        loading.style.display = 'none';
+      }
+
+      if (login && !returningFromNeonJump) {
+        login.style.display = 'block';
+        login.style.visibility = 'visible';
+        login.style.opacity = '1';
+      }
+    }, 1200);
+  </script>
 </body>
 </html>
 

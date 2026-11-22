@@ -369,8 +369,9 @@ class NeoStore {
         if (typeof currentUser !== 'undefined' && currentUser) {
             return currentUser;
         }
-        
-        const lastUser = localStorage.getItem('neo_last_user');
+
+        const lastUser = localStorage.getItem('neo_last_user')
+            || localStorage.getItem('currentUser');
         return lastUser || 'guest';
     }
 
@@ -380,7 +381,7 @@ class NeoStore {
      * Retrieves the user's current gold balance from localStorage.
      * Auto-fixes gold if it's 0 or missing.
      * 
-     * @returns {number} User's gold balance (default: 1000)
+     * @returns {number} User's gold balance (default: 100)
      */
     getUserGold() {
         const username = this.getCurrentUsername();
@@ -388,21 +389,19 @@ class NeoStore {
             ? getStoredUsers()
             : {};
         const userData = users[username] || {};
-        let gold = typeof userData.gold === 'number' ? userData.gold : 1000;
-        
-        // Auto-fix: If gold is 0 or missing, reset to 1000
-        if (gold <= 0) {
-            gold = 1000;
+        if (typeof userData.gold !== 'number') {
+            const gold = 100;
             if (!users[username]) users[username] = {};
             users[username].gold = gold;
             localStorage.setItem('neo_users', JSON.stringify(users));
-            
+
             if (this.debugMode) {
-                console.log(`🛠️ Auto-fixed gold for ${username}: reset to ${gold}`);
+                console.log(`Initialized gold for ${username}: ${gold}`);
             }
+            return gold;
         }
-        
-        return gold;
+
+        return Math.max(0, userData.gold);
     }
 
     /**

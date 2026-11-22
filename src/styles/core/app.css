@@ -144,10 +144,12 @@
     visibility: visible !important;
 }
 
-/* Loading indicator - can be shown briefly */
-#loading-indicator {
-    visibility: visible !important;
-    opacity: 1 !important;
+/* Hidden loading indicators must never remain visible. */
+.loading-indicator[hidden],
+#loading-indicator[hidden] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
 }
 
 /* Force login section to be visible */

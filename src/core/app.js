@@ -395,9 +395,9 @@ function initializeApp() {
                 console.log('Loading indicator hidden immediately');
             }
         } else {
-            // Show loading indicator only if coming from NeonJump
+            // NeonJump returns go directly to the desktop.
             if (loadingIndicator) {
-                loadingIndicator.hidden = false;
+                loadingIndicator.hidden = true;
             }
         }
         
