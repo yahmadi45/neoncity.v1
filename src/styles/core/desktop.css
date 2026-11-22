@@ -794,14 +794,134 @@
 }
 
 
+/* External applications and local container integrations */
+.integration-shell {
+    height: 100%;
+    display: grid;
+    grid-template-columns: minmax(230px, 330px) minmax(0, 1fr);
+    gap: 16px;
+}
 
+.integration-panel,
+.integration-preview {
+    min-height: 0;
+    border: 1px solid rgba(0, 247, 255, 0.18);
+    border-radius: 14px;
+    background: rgba(6, 10, 18, 0.92);
+}
 
+.integration-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 18px;
+}
 
+.integration-panel h3 {
+    margin: 0;
+    color: #fff;
+    font: 700 20px 'Orbitron', sans-serif;
+}
 
+.integration-panel p {
+    margin: 0;
+    color: #9caabd;
+    line-height: 1.55;
+}
 
+.integration-eyebrow {
+    color: var(--neon-green);
+    font: 700 10px 'Share Tech Mono', monospace;
+    letter-spacing: 2px;
+}
 
+.integration-panel label {
+    display: grid;
+    gap: 7px;
+    color: #dbe7ef;
+    font-size: 13px;
+    font-weight: 700;
+}
 
+.integration-panel input {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid rgba(0, 247, 255, 0.24);
+    border-radius: 9px;
+    background: #090d16;
+    color: #fff;
+    padding: 11px 12px;
+    outline: none;
+}
 
+.integration-panel input:focus {
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 16px rgba(0, 247, 255, 0.14);
+}
 
+.integration-connect {
+    border: 0;
+    border-radius: 9px;
+    background: linear-gradient(135deg, var(--neon-purple), #00a7ff);
+    color: #fff;
+    min-height: 42px;
+    font: 700 12px 'Orbitron', sans-serif;
+    cursor: pointer;
+}
 
+.integration-command {
+    min-height: 58px;
+    margin: 0;
+    overflow: auto;
+    border-radius: 9px;
+    background: #05070c;
+    color: var(--neon-green);
+    padding: 10px;
+    font-size: 11px;
+    white-space: pre-wrap;
+}
+
+.integration-preview {
+    position: relative;
+    overflow: hidden;
+}
+
+.integration-frame {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: #fff;
+}
+
+.integration-empty {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    color: #dbe7ef;
+    background:
+        radial-gradient(circle at center, rgba(0, 247, 255, 0.09), transparent 16rem),
+        #080b12;
+    text-align: center;
+}
+
+.integration-empty span {
+    color: #8492a4;
+    font-size: 13px;
+}
+
+@media (max-width: 768px) {
+    .integration-shell {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto minmax(360px, 1fr);
+        overflow-y: auto;
+    }
+
+    .integration-preview {
+        min-height: 360px;
+    }
+}
 

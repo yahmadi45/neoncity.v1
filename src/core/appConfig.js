@@ -43,6 +43,9 @@ const APP_CONFIG = {
      */
     desktop: [
         { name: 'DevOps', icon: 'assets/icons/terminal.png', location: 'devops', description: 'DevOps Control Room' },
+        { name: 'AI Agent', icon: 'assets/icons/terminal.png', location: 'ai-agent', description: 'Local Docker AI Agent' },
+        { name: 'External Apps', icon: 'assets/icons/browser.png', location: 'external-apps', description: 'Docker and GitHub web applications' },
+        { name: 'External Games', icon: 'assets/icons/neonJump.png', location: 'external-games', description: 'Containerized and hosted games' },
         // Core System Applications
         { name: "Files", icon: "assets/icons/files.png", location: "filemanager", description: "File Manager" },
         { name: "Terminal", icon: "assets/icons/terminal.png", location: "terminal", description: "System Terminal" },
