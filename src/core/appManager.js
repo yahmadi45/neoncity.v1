@@ -84,6 +84,15 @@ class AppManager {
             case 'desktop':
                 this.showDesktop();
                 break;
+            case 'ai-agent':
+                this.showAIAgent();
+                break;
+            case 'external-apps':
+                this.showExternalApps();
+                break;
+            case 'external-games':
+                this.showExternalGames();
+                break;
             case 'filemanager':
                 this.showFileManager();
                 break;
@@ -397,6 +406,202 @@ class AppManager {
         this.renderDesktopIcons();
         if (window.devOpsDashboard) window.devOpsDashboard.render();
     }
+
+    showAIAgent() {
+        this.hideAllApps();
+        this.createAppWindow('ai-agent', 'AI Agent', this.generateAIAgentContent());
+        this.renderDesktopIcons();
+        setTimeout(() => this.initializeExternalLauncher('ai-agent'), 50);
+    }
+
+    showExternalApps() {
+        this.hideAllApps();
+        this.createAppWindow('external-apps', 'External Apps', this.generateExternalLauncherContent('app'));
+        this.renderDesktopIcons();
+        setTimeout(() => this.initializeExternalLauncher('external-app'), 50);
+    }
+
+    showExternalGames() {
+        this.hideAllApps();
+        this.createAppWindow('external-games', 'External Games', this.generateExternalLauncherContent('game'));
+        this.renderDesktopIcons();
+        setTimeout(() => this.initializeExternalLauncher('external-game'), 50);
+    }
+
+    escapeHTML(value) {
+        return String(value).replace(/[&<>"']/g, (character) => ({
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#39;'
+        })[character]);
+    }
+
+    getStoredIntegration(key) {
+        try {
+            const value = JSON.parse(localStorage.getItem(key) || '{}');
+            return value && typeof value === 'object' ? value : {};
+        } catch (_) {
+            localStorage.removeItem(key);
+            return {};
+        }
+    }
+
+    generateAIAgentContent() {
+        const saved = this.getStoredIntegration('neocityAIAgent');
+        const image = this.escapeHTML(saved.image || '');
+        const url = this.escapeHTML(saved.url || 'http://localhost:3000');
+        return `
+            <div class="integration-shell">
+                <div class="integration-panel">
+                    <span class="integration-eyebrow">LOCAL CONTAINER</span>
+                    <h3>AI Agent</h3>
+                    <p>Run a web-enabled Docker image on this computer, then connect it here. NeoCityOS remains static and does not require a server.</p>
+                    <label>Docker Hub image
+                        <input class="integration-image" type="text" placeholder="owner/agent-image:latest" value="${image}">
+                    </label>
+                    <label>Agent web URL
+                        <input class="integration-url" type="url" placeholder="http://localhost:3000" value="${url}">
+                    </label>
+                    <button type="button" class="integration-connect">Connect Agent</button>
+                    <pre class="integration-command"></pre>
+                </div>
+                <div class="integration-preview">
+                    <iframe class="integration-frame" title="AI Agent" sandbox="allow-scripts allow-forms allow-same-origin allow-downloads"></iframe>
+                    <div class="integration-empty">
+                        <strong>Agent not connected</strong>
+                        <span>Enter a Docker web URL and connect.</span>
+                    </div>
+                </div>
+            </div>`;
+    }
+
+    generateExternalLauncherContent(type) {
+        const kind = type === 'game' ? 'game' : 'app';
+        const title = kind === 'game' ? 'External Game' : 'External App';
+        const saved = this.getStoredIntegration(`neocityExternal${kind === 'game' ? 'Games' : 'Apps'}`);
+        const name = this.escapeHTML(saved.name || '');
+        const url = this.escapeHTML(saved.url || '');
+        const catalog = kind === 'game'
+            ? [
+                ['Neon Jump', 'neon-jump', 'assets/icons/neonJump.png'],
+                ['Dice Game', 'dicegame', 'assets/icons/dice.png'],
+                ['Advanced Dice', 'advanced-dice', 'assets/icons/advancedDice.png'],
+                ['Memory Game', 'memory-game', 'assets/icons/memoryGame.png'],
+                ['Puzzle Solver', 'puzzle-solver', 'assets/icons/puzzleSolver.png'],
+                ['Number Guesser', 'number-guesser', 'assets/icons/numberGuesser.png']
+              ]
+            : [
+                ['DevOps', 'devops', 'assets/icons/terminal.png'],
+                ['Files', 'filemanager', 'assets/icons/files.png'],
+                ['Browser', 'browser', 'assets/icons/browser.png'],
+                ['Store', 'store', 'assets/icons/store.png'],
+                ['Algorithm Visualizer', 'algorithm', 'assets/icons/algorithmVisualizer.png'],
+                ['Data Structures', 'data-structures', 'assets/icons/dataStructures.png'],
+                ['Text Analyzer', 'text-analyzer', 'assets/icons/textAnalyzer.png']
+              ];
+        const catalogMarkup = catalog.map(([itemName, location, icon]) => `
+            <button type="button" class="integration-card" data-location="${location}">
+                <img src="${icon}" alt="">
+                <span>${itemName}</span>
+            </button>`).join('');
+        return `
+            <div class="integration-shell">
+                <div class="integration-panel">
+                    <span class="integration-eyebrow">${kind === 'game' ? 'CONTAINER OR HOSTED GAME' : 'DOCKER OR GITHUB WEB APP'}</span>
+                    <h3>${title}</h3>
+                    <p>Open a web application or game inside NeoCityOS. GitHub Pages and Docker web containers are supported through an isolated iframe.</p>
+                    <div class="integration-catalog" aria-label="Built-in ${kind === 'game' ? 'games' : 'applications'}">
+                        ${catalogMarkup}
+                    </div>
+                    <label>Display name
+                        <input class="integration-name" type="text" placeholder="${kind === 'game' ? 'My Container Game' : 'My Web App'}" value="${name}">
+                    </label>
+                    <label>Public or localhost URL
+                        <input class="integration-url" type="url" placeholder="https://example.github.io/app/" value="${url}">
+                    </label>
+                    <button type="button" class="integration-connect">Open ${title}</button>
+                </div>
+                <div class="integration-preview">
+                    <iframe class="integration-frame" title="${title}" sandbox="allow-scripts allow-forms allow-same-origin allow-downloads allow-popups"></iframe>
+                    <div class="integration-empty">
+                        <strong>No ${kind} connected</strong>
+                        <span>Add a public URL or a local Docker URL.</span>
+                    </div>
+                </div>
+            </div>`;
+    }
+
+    initializeExternalLauncher(mode) {
+        const windowId = mode === 'ai-agent' ? 'ai-agent' : mode === 'external-app' ? 'external-apps' : 'external-games';
+        const windowElement = document.getElementById(windowId);
+        if (!windowElement) return;
+
+        const urlInput = windowElement.querySelector('.integration-url');
+        const imageInput = windowElement.querySelector('.integration-image');
+        const nameInput = windowElement.querySelector('.integration-name');
+        const button = windowElement.querySelector('.integration-connect');
+        const frame = windowElement.querySelector('.integration-frame');
+        const empty = windowElement.querySelector('.integration-empty');
+        const command = windowElement.querySelector('.integration-command');
+
+        if (mode === 'ai-agent' && command) {
+            const updateCommand = () => {
+                const image = imageInput.value.trim();
+                command.textContent = image
+                    ? `docker run --rm -p 3000:3000 ${image}`
+                    : 'Enter a Docker Hub image to generate the run command.';
+            };
+            imageInput.addEventListener('input', updateCommand);
+            updateCommand();
+        }
+
+        const connect = () => {
+            const url = urlInput.value.trim();
+            if (!url) {
+                empty.innerHTML = '<strong>URL required</strong><span>Enter a valid public or localhost URL.</span>';
+                empty.style.display = 'flex';
+                return;
+            }
+
+            try {
+                const parsed = new URL(url);
+                if (!['http:', 'https:'].includes(parsed.protocol)) throw new Error('Invalid protocol');
+            } catch (_) {
+                empty.innerHTML = '<strong>Invalid URL</strong><span>Use http:// or https://.</span>';
+                empty.style.display = 'flex';
+                return;
+            }
+
+            if (mode === 'ai-agent') {
+                localStorage.setItem('neocityAIAgent', JSON.stringify({
+                    image: imageInput.value.trim(),
+                    url
+                }));
+            } else {
+                const key = mode === 'external-app' ? 'neocityExternalApps' : 'neocityExternalGames';
+                localStorage.setItem(key, JSON.stringify({ name: nameInput.value.trim(), url }));
+            }
+
+            empty.style.display = 'none';
+            frame.src = url;
+        };
+
+        button.addEventListener('click', connect);
+        windowElement.querySelectorAll('.integration-card').forEach((card) => {
+            card.addEventListener('click', () => {
+                const location = card.dataset.location;
+                const name = card.querySelector('span')?.textContent || location;
+                this.openApp(location, name);
+            });
+        });
+        urlInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') connect();
+        });
+
+        if (urlInput.value && urlInput.value !== 'http://localhost:3000') connect();
+    }
     showNeonJump() {
         console.log('Opening Neon Jump - NeoCityOS Edition...');
         this.hideAllApps();
@@ -479,7 +684,7 @@ class AppManager {
         appWindow.querySelector('.app-header h3').textContent = title;
         appWindow.querySelector('.close-btn').addEventListener('click', () => this.closeApp(id));
         appWindow.querySelector('.maximize-btn').addEventListener('click', () => this.toggleMaximize(appWindow));
-        appWindow.querySelector('.minimize-btn').addEventListener('click', () => this.closeApp(id));
+        appWindow.querySelector('.minimize-btn').addEventListener('click', () => this.minimizeApp(id));
         this.setupWindowInteractions(appWindow);
         
         const desktop = document.getElementById('desktop-section');
@@ -563,6 +768,7 @@ class AppManager {
     closeApp(appId) {
         const appWindow = document.getElementById(appId);
         if (appWindow) {
+            document.getElementById(`restore-${appId}`)?.remove();
             // For NeonJump, close immediately without animation delay
             if (appId === 'neon-jump') {
                 appWindow.remove();
@@ -602,6 +808,42 @@ class AppManager {
                 }
             }, 300);
         }
+    }
+
+    minimizeApp(appId) {
+        const appWindow = document.getElementById(appId);
+        if (!appWindow) return;
+        appWindow.dataset.minimized = 'true';
+        appWindow.style.display = 'none';
+
+        let tray = document.getElementById('window-restores');
+        if (!tray) {
+            tray = document.createElement('div');
+            tray.id = 'window-restores';
+            tray.className = 'window-restores';
+            document.getElementById('desktop-section')?.appendChild(tray);
+        }
+
+        const title = appWindow.querySelector('.app-header h3')?.textContent || appId;
+        const existing = document.getElementById(`restore-${appId}`);
+        if (!existing) {
+            const button = document.createElement('button');
+            button.id = `restore-${appId}`;
+            button.type = 'button';
+            button.textContent = title;
+            button.addEventListener('click', () => this.restoreApp(appId));
+            tray.appendChild(button);
+        }
+    }
+
+    restoreApp(appId) {
+        const appWindow = document.getElementById(appId);
+        if (!appWindow) return;
+        appWindow.dataset.minimized = 'false';
+        appWindow.style.display = 'block';
+        appWindow.style.opacity = '1';
+        appWindow.style.zIndex = '700';
+        document.getElementById(`restore-${appId}`)?.remove();
     }
 
     /**
