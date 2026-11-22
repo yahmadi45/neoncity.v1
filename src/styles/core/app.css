@@ -2,9 +2,9 @@
 
 /* Login Section */
 .login-section {
-    display: block !important;
-    opacity: 1 !important;
-    visibility: visible !important;
+    display: block;
+    opacity: 1;
+    visibility: visible;
 }
 
 /* Terminal Container */
@@ -139,9 +139,9 @@
 
 /* Normal Login Flow Styles */
 .normal-login .login-section {
-    display: block !important;
-    opacity: 1 !important;
-    visibility: visible !important;
+    display: block;
+    opacity: 1;
+    visibility: visible;
 }
 
 /* Hidden loading indicators must never remain visible. */
@@ -152,12 +152,6 @@
     opacity: 0 !important;
 }
 
-/* Force login section to be visible */
-#login-section {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-}
 
 /* App CSS - Extracted from app.js */
 
