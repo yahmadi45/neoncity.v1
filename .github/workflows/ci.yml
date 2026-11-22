@@ -24,7 +24,9 @@ jobs:
           node --check src/core/appManager.js
 
       - name: Validate Docker Compose configuration
-        run: docker compose config --quiet
+        run: |
+          docker compose config --quiet
+          docker compose -f docker-compose.ai.yml config --quiet
 
       - name: Build container image
         run: docker build --tag neoncity:ci .

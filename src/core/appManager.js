@@ -467,7 +467,7 @@ class AppManager {
                 <div class="integration-panel">
                     <span class="integration-eyebrow">LOCAL CONTAINER</span>
                     <h3>AI Agent</h3>
-                    <p>Run a web-enabled Docker image on this computer, then connect it here. NeoCityOS remains static and does not require a server.</p>
+                    <p>Start the recommended local AI stack, choose a model in Open WebUI, then connect it here. NeoCityOS remains static and does not run a backend.</p>
                     <label>Docker Hub image
                         <input class="integration-image" type="text" placeholder="owner/agent-image:latest" value="${image}">
                     </label>
@@ -560,8 +560,8 @@ class AppManager {
             const updateCommand = () => {
                 const image = imageInput.value.trim();
                 command.textContent = image
-                    ? `docker run --rm -p 3000:3000 ${image}`
-                    : 'Enter a Docker Hub image to generate the run command.';
+                    ? `docker run --rm -p 3000:8080 ${image}\nThen open http://localhost:3000`
+                    : 'docker compose -f docker-compose.ai.yml up -d\ndocker compose -f docker-compose.ai.yml exec ollama ollama pull llama3.2\nThen open http://localhost:3000';
             };
             imageInput.addEventListener('input', updateCommand);
             updateCommand();
