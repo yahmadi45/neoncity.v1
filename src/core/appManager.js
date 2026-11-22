@@ -483,12 +483,38 @@ class AppManager {
         const saved = this.getStoredIntegration(`neocityExternal${kind === 'game' ? 'Games' : 'Apps'}`);
         const name = this.escapeHTML(saved.name || '');
         const url = this.escapeHTML(saved.url || '');
+        const catalog = kind === 'game'
+            ? [
+                ['Neon Jump', 'neon-jump', 'assets/icons/neonJump.png'],
+                ['Dice Game', 'dicegame', 'assets/icons/dice.png'],
+                ['Advanced Dice', 'advanced-dice', 'assets/icons/advancedDice.png'],
+                ['Memory Game', 'memory-game', 'assets/icons/memoryGame.png'],
+                ['Puzzle Solver', 'puzzle-solver', 'assets/icons/puzzleSolver.png'],
+                ['Number Guesser', 'number-guesser', 'assets/icons/numberGuesser.png']
+              ]
+            : [
+                ['DevOps', 'devops', 'assets/icons/terminal.png'],
+                ['Files', 'filemanager', 'assets/icons/files.png'],
+                ['Browser', 'browser', 'assets/icons/browser.png'],
+                ['Store', 'store', 'assets/icons/store.png'],
+                ['Algorithm Visualizer', 'algorithm', 'assets/icons/algorithmVisualizer.png'],
+                ['Data Structures', 'data-structures', 'assets/icons/dataStructures.png'],
+                ['Text Analyzer', 'text-analyzer', 'assets/icons/textAnalyzer.png']
+              ];
+        const catalogMarkup = catalog.map(([itemName, location, icon]) => `
+            <button type="button" class="integration-card" data-location="${location}">
+                <img src="${icon}" alt="">
+                <span>${itemName}</span>
+            </button>`).join('');
         return `
             <div class="integration-shell">
                 <div class="integration-panel">
                     <span class="integration-eyebrow">${kind === 'game' ? 'CONTAINER OR HOSTED GAME' : 'DOCKER OR GITHUB WEB APP'}</span>
                     <h3>${title}</h3>
                     <p>Open a web application or game inside NeoCityOS. GitHub Pages and Docker web containers are supported through an isolated iframe.</p>
+                    <div class="integration-catalog" aria-label="Built-in ${kind === 'game' ? 'games' : 'applications'}">
+                        ${catalogMarkup}
+                    </div>
                     <label>Display name
                         <input class="integration-name" type="text" placeholder="${kind === 'game' ? 'My Container Game' : 'My Web App'}" value="${name}">
                     </label>
@@ -563,6 +589,13 @@ class AppManager {
         };
 
         button.addEventListener('click', connect);
+        windowElement.querySelectorAll('.integration-card').forEach((card) => {
+            card.addEventListener('click', () => {
+                const location = card.dataset.location;
+                const name = card.querySelector('span')?.textContent || location;
+                this.openApp(location, name);
+            });
+        });
         urlInput.addEventListener('keydown', (event) => {
             if (event.key === 'Enter') connect();
         });
@@ -651,7 +684,7 @@ class AppManager {
         appWindow.querySelector('.app-header h3').textContent = title;
         appWindow.querySelector('.close-btn').addEventListener('click', () => this.closeApp(id));
         appWindow.querySelector('.maximize-btn').addEventListener('click', () => this.toggleMaximize(appWindow));
-        appWindow.querySelector('.minimize-btn').addEventListener('click', () => this.closeApp(id));
+        appWindow.querySelector('.minimize-btn').addEventListener('click', () => this.minimizeApp(id));
         this.setupWindowInteractions(appWindow);
         
         const desktop = document.getElementById('desktop-section');
@@ -735,6 +768,7 @@ class AppManager {
     closeApp(appId) {
         const appWindow = document.getElementById(appId);
         if (appWindow) {
+            document.getElementById(`restore-${appId}`)?.remove();
             // For NeonJump, close immediately without animation delay
             if (appId === 'neon-jump') {
                 appWindow.remove();
@@ -774,6 +808,42 @@ class AppManager {
                 }
             }, 300);
         }
+    }
+
+    minimizeApp(appId) {
+        const appWindow = document.getElementById(appId);
+        if (!appWindow) return;
+        appWindow.dataset.minimized = 'true';
+        appWindow.style.display = 'none';
+
+        let tray = document.getElementById('window-restores');
+        if (!tray) {
+            tray = document.createElement('div');
+            tray.id = 'window-restores';
+            tray.className = 'window-restores';
+            document.getElementById('desktop-section')?.appendChild(tray);
+        }
+
+        const title = appWindow.querySelector('.app-header h3')?.textContent || appId;
+        const existing = document.getElementById(`restore-${appId}`);
+        if (!existing) {
+            const button = document.createElement('button');
+            button.id = `restore-${appId}`;
+            button.type = 'button';
+            button.textContent = title;
+            button.addEventListener('click', () => this.restoreApp(appId));
+            tray.appendChild(button);
+        }
+    }
+
+    restoreApp(appId) {
+        const appWindow = document.getElementById(appId);
+        if (!appWindow) return;
+        appWindow.dataset.minimized = 'false';
+        appWindow.style.display = 'block';
+        appWindow.style.opacity = '1';
+        appWindow.style.zIndex = '700';
+        document.getElementById(`restore-${appId}`)?.remove();
     }
 
     /**
