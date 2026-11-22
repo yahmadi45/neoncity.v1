@@ -172,10 +172,10 @@
 
 /* Hacker Desktop Icons */
 #desktop-icons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 60px;
-    padding: 100px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 112px);
+    gap: 24px;
+    padding: 48px 56px 110px;
     justify-content: flex-start;
     align-content: flex-start;
     min-height: calc(100vh - 120px);
@@ -192,8 +192,10 @@
     flex-direction: column;
     align-items: center;
     cursor: pointer;
-    width: 120px;
-    padding: 30px 25px;
+    width: 112px;
+    min-height: 112px;
+    box-sizing: border-box;
+    padding: 16px 12px;
     transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     text-align: center;
     position: relative;
@@ -204,7 +206,7 @@
         0 2px 8px rgba(0, 0, 139, 0.6),
         0 0 15px rgba(0, 100, 0, 0.5);
     transform: translateY(0);
-    animation: iconFloat 4s ease-in-out infinite;
+    animation: iconFloat 7s ease-in-out infinite;
 }
 
 .icon:nth-child(2n) {
@@ -264,8 +266,8 @@
 }
 
 .icon img {
-    width: 75px;
-    height: 75px;
+    width: 62px;
+    height: 62px;
     object-fit: contain;
     margin-bottom: 18px;
     filter: drop-shadow(0 0 20px var(--neon-blue)) brightness(1.2);
@@ -476,6 +478,20 @@
     backdrop-filter: blur(10px);
 }
 
+.app-window.dragging {
+    transition: none;
+    user-select: none;
+}
+
+.app-window.maximized {
+    inset: 12px 12px 92px 12px !important;
+    width: auto !important;
+    height: auto !important;
+    max-width: none !important;
+    max-height: none !important;
+    transform: none !important;
+}
+
 .app-header {
     background: linear-gradient(135deg, var(--neon-purple), var(--neon-blue));
     color: black;
@@ -488,6 +504,71 @@
     border-bottom: 2px solid rgba(0, 247, 255, 0.3);
     position: relative;
     overflow: hidden;
+    height: 56px;
+    box-sizing: border-box;
+    cursor: default;
+}
+
+.window-drag-area {
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    height: 100%;
+    cursor: grab;
+}
+
+.dragging .window-drag-area {
+    cursor: grabbing;
+}
+
+.window-status {
+    width: 9px;
+    height: 9px;
+    flex: 0 0 auto;
+    border-radius: 50%;
+    background: var(--hacker-green);
+    box-shadow: 0 0 12px var(--hacker-green);
+}
+
+.window-controls {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    position: relative;
+    z-index: 3;
+}
+
+.window-controls button {
+    width: 34px;
+    height: 34px;
+    border: 1px solid rgba(0, 247, 255, 0.35);
+    border-radius: 10px;
+    color: #061014;
+    background: rgba(255, 255, 255, 0.72);
+    font: 700 18px/1 'Share Tech Mono', monospace;
+    cursor: pointer;
+    transition: transform 160ms ease, background 160ms ease, box-shadow 160ms ease;
+}
+
+.window-controls button:hover,
+.window-controls button:focus-visible {
+    transform: translateY(-2px);
+    background: #fff;
+    box-shadow: 0 6px 18px rgba(0, 247, 255, 0.32);
+    outline: none;
+}
+
+.window-controls .close-btn {
+    color: #fff;
+    background: rgba(255, 65, 94, 0.92);
+    border-color: rgba(255, 255, 255, 0.55);
+}
+
+.window-controls .close-btn:hover,
+.window-controls .close-btn:focus-visible {
+    background: #ff415e;
 }
 
 .app-header::before {
@@ -536,7 +617,8 @@
 
 .app-content {
     padding: 25px;
-    height: calc(100% - 80px);
+    height: calc(100% - 56px);
+    box-sizing: border-box;
     overflow-y: auto;
     color: white;
     font-family: 'Rajdhani', sans-serif;
@@ -630,13 +712,15 @@
 /* Responsive Design */
 @media (max-width: 768px) {
     #desktop-icons {
-        gap: 35px;
-        padding: 50px;
+        grid-template-columns: repeat(auto-fill, minmax(82px, 1fr));
+        gap: 12px;
+        padding: 24px 12px 96px;
     }
     
     .icon {
-        width: 100px;
-        padding: 25px 20px;
+        width: 100%;
+        min-height: 96px;
+        padding: 12px 8px;
     }
     
     .icon img {
@@ -649,8 +733,43 @@
     }
     
     .app-window {
-        width: 95%;
-        height: 85%;
+        inset: 8px 8px 78px 8px !important;
+        width: auto;
+        height: auto;
+        max-width: none;
+        max-height: none;
+        transform: none;
+    }
+
+    .app-header {
+        height: 52px;
+        padding: 8px 10px 8px 14px;
+    }
+
+    .app-header h3 {
+        max-width: 60vw;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .window-controls {
+        gap: 4px;
+    }
+
+    .window-controls button {
+        width: 32px;
+        height: 32px;
+    }
+
+    .window-controls .minimize-btn {
+        display: none;
+    }
+
+    .app-content {
+        height: calc(100% - 52px);
+        padding: 14px;
+        overscroll-behavior: contain;
     }
     
     .user-info {

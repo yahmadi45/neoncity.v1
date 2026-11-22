@@ -456,15 +456,31 @@ class AppManager {
         const appWindow = document.createElement('div');
         appWindow.id = id;
         appWindow.className = 'app-window';
+        appWindow.tabIndex = -1;
+        appWindow.setAttribute('role', 'dialog');
+        appWindow.setAttribute('aria-modal', 'true');
+        appWindow.setAttribute('aria-label', title);
         appWindow.innerHTML = `
             <div class="app-header">
-                <h3>${title}</h3>
-                <button class="close-btn" onclick="appManager.closeApp('${id}')">×</button>
+                <div class="window-drag-area">
+                    <span class="window-status" aria-hidden="true"></span>
+                    <h3></h3>
+                </div>
+                <div class="window-controls">
+                    <button class="minimize-btn" type="button" aria-label="Minimize ${title}" title="Minimize">−</button>
+                    <button class="maximize-btn" type="button" aria-label="Maximize ${title}" title="Maximize">□</button>
+                    <button class="close-btn" type="button" aria-label="Close ${title}" title="Close">×</button>
+                </div>
             </div>
             <div class="app-content">
                 ${content}
             </div>
         `;
+        appWindow.querySelector('.app-header h3').textContent = title;
+        appWindow.querySelector('.close-btn').addEventListener('click', () => this.closeApp(id));
+        appWindow.querySelector('.maximize-btn').addEventListener('click', () => this.toggleMaximize(appWindow));
+        appWindow.querySelector('.minimize-btn').addEventListener('click', () => this.closeApp(id));
+        this.setupWindowInteractions(appWindow);
         
         const desktop = document.getElementById('desktop-section');
         if (desktop) {
@@ -474,7 +490,65 @@ class AppManager {
             setTimeout(() => {
                 appWindow.style.opacity = '1';
                 appWindow.style.transform = 'translate(-50%, -50%) scale(1)';
+                appWindow.focus();
             }, 10);
+        }
+    }
+
+    setupWindowInteractions(appWindow) {
+        const header = appWindow.querySelector('.app-header');
+        let dragging = false;
+        let startX = 0;
+        let startY = 0;
+        let originX = 0;
+        let originY = 0;
+
+        appWindow.addEventListener('pointerdown', () => {
+            document.querySelectorAll('.app-window').forEach((windowElement) => {
+                windowElement.style.zIndex = '500';
+            });
+            appWindow.style.zIndex = '700';
+        });
+
+        header.addEventListener('pointerdown', (event) => {
+            if (event.target.closest('button') || appWindow.classList.contains('maximized') || window.innerWidth <= 768) return;
+            const rect = appWindow.getBoundingClientRect();
+            dragging = true;
+            startX = event.clientX;
+            startY = event.clientY;
+            originX = rect.left;
+            originY = rect.top;
+            header.setPointerCapture(event.pointerId);
+            appWindow.classList.add('dragging');
+        });
+
+        header.addEventListener('pointermove', (event) => {
+            if (!dragging) return;
+            const inset = 12;
+            const maxX = window.innerWidth - appWindow.offsetWidth - inset;
+            const maxY = window.innerHeight - appWindow.offsetHeight - 56;
+            const left = Math.min(Math.max(inset, originX + event.clientX - startX), Math.max(inset, maxX));
+            const top = Math.min(Math.max(inset, originY + event.clientY - startY), Math.max(inset, maxY));
+            appWindow.style.left = `${left}px`;
+            appWindow.style.top = `${top}px`;
+            appWindow.style.transform = 'none';
+        });
+
+        header.addEventListener('pointerup', (event) => {
+            if (!dragging) return;
+            dragging = false;
+            appWindow.classList.remove('dragging');
+            if (header.hasPointerCapture(event.pointerId)) header.releasePointerCapture(event.pointerId);
+        });
+    }
+
+    toggleMaximize(appWindow) {
+        const maximized = appWindow.classList.toggle('maximized');
+        const button = appWindow.querySelector('.maximize-btn');
+        if (button) {
+            button.textContent = maximized ? '❐' : '□';
+            button.title = maximized ? 'Restore' : 'Maximize';
+            button.setAttribute('aria-label', maximized ? 'Restore window' : 'Maximize window');
         }
     }
 
