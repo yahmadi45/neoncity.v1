@@ -73,6 +73,29 @@ The host port is configurable in `docker-compose.yml`; the container listens on 
 docker compose down
 ```
 
+## Run the local AI Agent container
+
+NeoCityOS stays a static website. The optional AI stack runs as separate Docker containers and is not required to serve or build the site:
+
+```powershell
+docker compose -f docker-compose.ai.yml up -d
+docker compose -f docker-compose.ai.yml exec ollama ollama pull llama3.2
+```
+
+Open <http://localhost:3000>, then open the **AI Agent** icon in NeoCityOS. The agent interface is displayed inside the NeoCity window.
+
+The stack uses:
+
+- `ollama/ollama:latest` for local model inference on host port `11434`
+- `ghcr.io/open-webui/open-webui:main` for the browser chat interface on host port `3000`
+- Docker volumes for Ollama models and Open WebUI data
+
+Stop the optional stack:
+
+```powershell
+docker compose -f docker-compose.ai.yml down
+```
+
 Build and run without Compose:
 
 ```powershell
