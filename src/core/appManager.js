@@ -159,6 +159,12 @@ class AppManager {
     showDesktop() {
         this.currentLocation = 'desktop';
         this.hideAllApps();
+        const loginSection = document.getElementById('login-section');
+        if (loginSection) {
+            loginSection.style.display = 'none';
+            loginSection.setAttribute('aria-hidden', 'true');
+        }
+        document.body.classList.remove('normal-login');
         
         // Get desktop section and display it with animation
         const desktop = document.getElementById("desktop-section");
@@ -200,6 +206,10 @@ class AppManager {
      * 3. Hide each window by setting display to 'none'
      */
     hideAllApps() {
+        const loginSection = document.getElementById('login-section');
+        if (loginSection && this.currentLocation !== 'desktop') {
+            loginSection.style.display = 'none';
+        }
         // Hide the startup terminal that appears after login
         const terminal = document.getElementById("terminal");
         if (terminal) terminal.style.display = "none";
